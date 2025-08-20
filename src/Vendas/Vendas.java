@@ -51,5 +51,5 @@ public class Vendas {
     }
 }
 
+//Verificação de sincronização
 
-//Verificação
