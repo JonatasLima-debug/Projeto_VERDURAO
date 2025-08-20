@@ -1,0 +1,83 @@
+package Produtos;
+
+public class ProdutoService {
+
+    public ProdutoDAO dao;
+
+    public ProdutoService(ProdutoDAO dao) {
+        this.dao = dao;
+    }
+
+    // Vender produto pelo nome
+    public boolean vender(String nomeProduto, long quantidadeCliente) {
+        if (nomeProduto == null || nomeProduto.trim().isEmpty()) {
+            System.out.println("Nome do produto inválido.");
+            return false;
+        }
+
+        if (quantidadeCliente <= 0) {
+            System.out.println("Quantidade inválida para venda.");
+            return false;
+        }
+
+        int precoUnitario = dao.obterPrecoPorNome(nomeProduto);
+        long estoqueAtual = dao.obterQuantidadePorNome(nomeProduto);
+
+        if (precoUnitario == -1 || estoqueAtual == -1) {
+            System.out.println("Produto não encontrado: " + nomeProduto);
+            return false;
+        }
+
+        if (estoqueAtual < quantidadeCliente) {
+            System.out.println("Estoque insuficiente! Estoque atual: " + estoqueAtual);
+            return false;
+        }
+
+        long novoEstoque = estoqueAtual - quantidadeCliente;
+        dao.atualizarQuantidadePosVenda(nomeProduto, novoEstoque);
+
+        System.out.printf("Venda realizada! Produto: %s | Total a pagar: R$ %.2f | Novo estoque: %d%n",
+                nomeProduto, (precoUnitario * quantidadeCliente) / 100.0, novoEstoque);
+
+        return true;
+    }
+
+    public int obterIdPorNome(String nomeProduto) {
+        return dao.obterIdPorNome(nomeProduto);
+    }
+
+    public int obterPrecoPorNome(String nomeProduto) {
+        return dao.obterPrecoPorNome(nomeProduto);
+    }
+
+    public void CadastrarProduto(String nome, int preco, String tipo, long quantidade) {
+        if (nome == null || nome.trim().isEmpty()) return;
+        if (preco <= 0 || quantidade < 0) return;
+        if (dao.produtoExiste(nome.toUpperCase())) return;
+
+        Produtos p = new Produtos();
+        p.setNome(nome.toUpperCase());
+        p.setPreco(preco);
+        p.setTipo(tipo);
+        p.setQuantidade(quantidade);
+        dao.inserir(p);
+    }
+
+    public void EditarProduto(String nome, int preco, String tipo, long quantidade) {
+        if (nome == null || nome.trim().isEmpty()) return;
+        if (preco <= 0 || quantidade < 0) return;
+
+        if (dao.produtoExiste(nome.toUpperCase())) {
+            Produtos p = new Produtos();
+            p.setNome(nome.toUpperCase());
+            p.setPreco(preco);
+            p.setTipo(tipo);
+            p.setQuantidade(quantidade);
+            dao.atualizar(p);
+        }
+    }
+
+    public void ExcluirProduto(int id) {
+        if (dao.existeID(id)) dao.deletar(id);
+    }
+}
