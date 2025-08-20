@@ -50,3 +50,6 @@ public class Vendas {
         this.quantidade_vendida = quantidade_vendida;
     }
 }
+
+
+//Verificação
