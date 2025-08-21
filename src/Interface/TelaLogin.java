@@ -17,6 +17,7 @@ public class TelaLogin extends javax.swing.JFrame {
     public TelaLogin() {
         initComponents();
         setLocationRelativeTo(null);
+        getRootPane().setDefaultButton(btn_entrar);
     }
 
     /**
@@ -31,10 +32,10 @@ public class TelaLogin extends javax.swing.JFrame {
         label_usuario = new javax.swing.JLabel();
         campo_usuario = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        campo_senha = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         btn_entrar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        campo_senha = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -74,13 +75,13 @@ public class TelaLogin extends javax.swing.JFrame {
                                 .addComponent(campo_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel1)
-                                .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(campo_senha)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGap(70, 70, 70)
-                                        .addComponent(btn_entrar)
-                                        .addGap(0, 0, Short.MAX_VALUE))))))
+                                        .addGap(88, 88, 88)
+                                        .addComponent(btn_entrar))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addComponent(campo_senha))))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(167, 167, 167)
                         .addComponent(jLabel3)))
@@ -171,7 +172,7 @@ public class TelaLogin extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_entrar;
-    private javax.swing.JTextField campo_senha;
+    private javax.swing.JPasswordField campo_senha;
     private javax.swing.JTextField campo_usuario;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
