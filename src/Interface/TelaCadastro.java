@@ -10,20 +10,26 @@ package Interface;
  */
 import Produtos.*;
 import BD_Verdurao.*;
+import java.util.InputMismatchException;
+import javax.swing.JOptionPane;
 
 public class TelaCadastro extends javax.swing.JFrame {
     String modoCadastro;
     
-    BancoDeDados bd = new BancoDeDados();
-    ProdutoDAO pd = new ProdutoDAO(bd);
-    ProdutoService ps = new ProdutoService(pd);
+    BancoDeDados bd;
+    ProdutoDAO pd;
+    ProdutoService ps;
     /**
      * Creates new form TelaCadastro
      */
     public TelaCadastro() {
         initComponents();
         setLocationRelativeTo(null);
+        bd = new BancoDeDados();
+        pd = new ProdutoDAO(bd);
+        ps = new ProdutoService(pd);
         modoCadastro = "Navegar";
+        manipularInterfaceCadastro();
     }
     
     public void manipularInterfaceCadastro(){
@@ -248,11 +254,11 @@ public class TelaCadastro extends javax.swing.JFrame {
                                 .addComponent(btn_excluir)
                                 .addGap(46, 46, 46))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(401, 401, 401)
-                        .addComponent(btn_voltar))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(375, 375, 375)
-                        .addComponent(label_cadastroProdutos)))
+                        .addComponent(label_cadastroProdutos))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(402, 402, 402)
+                        .addComponent(btn_voltar)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -262,7 +268,7 @@ public class TelaCadastro extends javax.swing.JFrame {
                 .addComponent(label_cadastroProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 519, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 457, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(124, 124, 124)
                         .addComponent(panel_cadastrarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -272,9 +278,9 @@ public class TelaCadastro extends javax.swing.JFrame {
                             .addComponent(btn_editar)
                             .addComponent(btn_excluir))
                         .addGap(0, 0, Short.MAX_VALUE)))
-                .addGap(100, 100, 100)
+                .addGap(65, 65, 65)
                 .addComponent(btn_voltar)
-                .addGap(20, 20, 20))
+                .addGap(55, 55, 55))
         );
 
         pack();
@@ -282,6 +288,10 @@ public class TelaCadastro extends javax.swing.JFrame {
 
     private void btn_novoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_novoActionPerformed
         // TODO add your handling code here:
+        Campo_quantidade.setText("");
+        Campo_nomeProduto.setText("");
+        modoCadastro = "Novo";
+        manipularInterfaceCadastro();
     }//GEN-LAST:event_btn_novoActionPerformed
 
     private void btn_editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editarActionPerformed
@@ -293,19 +303,33 @@ public class TelaCadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_excluirActionPerformed
 
     private void btn_salvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_salvarActionPerformed
-        if(Campo_quantidade.getText().equals("")){
-            
-        }
-        else{
-            int quantidade = Integer.parseInt(Campo_quantidade.getText());
-            String tipo = ((String) ComboBox_tipo.getSelectedItem());
-            ps.CadastrarProduto(Campo_nomeProduto.getText(),1,tipo,quantidade);
-        }
+        boolean naoSalvou = true;
+        do{
+            try{
+                int quantidade = Integer.parseInt(Campo_quantidade.getText());
+                String tipo = ((String) ComboBox_tipo.getSelectedItem());
+                ps.CadastrarProduto(Campo_nomeProduto.getText(),1,tipo,quantidade);
+                naoSalvou = false;
+            }
+            catch(InputMismatchException e1){
+                System.out.println("Erro: "+e1);
+            }
+            catch(NullPointerException e2){
+                System.out.println("Erro: "+e2);
+            }
+        } while(naoSalvou);
         
     }//GEN-LAST:event_btn_salvarActionPerformed
 
     private void btn_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelarActionPerformed
         // TODO add your handling code here:
+        int op = JOptionPane.showConfirmDialog(rootPane, "Descartar alterações?","Aviso",JOptionPane.YES_NO_OPTION, 3);
+        if(op==0){
+            Campo_quantidade.setText("");
+        Campo_nomeProduto.setText("");
+        modoCadastro = "Navegar";
+        manipularInterfaceCadastro();
+        }
     }//GEN-LAST:event_btn_cancelarActionPerformed
 
     private void btn_voltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_voltarActionPerformed
