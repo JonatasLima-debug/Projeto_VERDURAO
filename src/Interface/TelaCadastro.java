@@ -26,6 +26,7 @@ public class TelaCadastro extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         bd = new BancoDeDados();
+        bd.conectar();
         pd = new ProdutoDAO(bd);
         ps = new ProdutoService(pd);
         modoCadastro = "Navegar";
@@ -37,6 +38,7 @@ public class TelaCadastro extends javax.swing.JFrame {
             case("Navegar"):
                 Campo_nomeProduto.setEnabled(false);
                 Campo_quantidade.setEnabled(false);
+                Campo_preco.setEnabled(false);
                 ComboBox_tipo.setEnabled(false);
                 btn_editar.setEnabled(false);
                 btn_novo.setEnabled(true);
@@ -49,6 +51,7 @@ public class TelaCadastro extends javax.swing.JFrame {
                 Campo_nomeProduto.setEnabled(true);
                 Campo_quantidade.setEnabled(true);
                 ComboBox_tipo.setEnabled(true);
+                Campo_preco.setEnabled(true);
                 btn_editar.setEnabled(false);
                 btn_novo.setEnabled(false);
                 btn_excluir.setEnabled(false);
@@ -60,6 +63,7 @@ public class TelaCadastro extends javax.swing.JFrame {
                 Campo_nomeProduto.setEnabled(true);
                 Campo_quantidade.setEnabled(true);
                 ComboBox_tipo.setEnabled(true);
+                Campo_preco.setEnabled(true);
                 btn_editar.setEnabled(false);
                 btn_novo.setEnabled(false);
                 btn_excluir.setEnabled(false);
@@ -92,6 +96,8 @@ public class TelaCadastro extends javax.swing.JFrame {
         Campo_quantidade = new javax.swing.JTextField();
         btn_salvar = new javax.swing.JButton();
         btn_cancelar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        Campo_preco = new javax.swing.JTextField();
         btn_voltar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -176,6 +182,14 @@ public class TelaCadastro extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setText("Preço:");
+
+        Campo_preco.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Campo_precoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panel_cadastrarProdutoLayout = new javax.swing.GroupLayout(panel_cadastrarProduto);
         panel_cadastrarProduto.setLayout(panel_cadastrarProdutoLayout);
         panel_cadastrarProdutoLayout.setHorizontalGroup(
@@ -183,26 +197,27 @@ public class TelaCadastro extends javax.swing.JFrame {
             .addGroup(panel_cadastrarProdutoLayout.createSequentialGroup()
                 .addGroup(panel_cadastrarProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panel_cadastrarProdutoLayout.createSequentialGroup()
-                        .addGroup(panel_cadastrarProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panel_cadastrarProdutoLayout.createSequentialGroup()
-                                .addGap(14, 14, 14)
-                                .addGroup(panel_cadastrarProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(label_quantidade)
-                                    .addComponent(label_nomeProduto)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_cadastrarProdutoLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(label_tipo)))
-                        .addGap(18, 18, 18)
-                        .addGroup(panel_cadastrarProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(Campo_nomeProduto)
-                            .addComponent(ComboBox_tipo, 0, 264, Short.MAX_VALUE)
-                            .addComponent(Campo_quantidade)))
-                    .addGroup(panel_cadastrarProdutoLayout.createSequentialGroup()
-                        .addGap(93, 93, 93)
-                        .addComponent(btn_salvar)
-                        .addGap(78, 78, 78)
-                        .addComponent(btn_cancelar)))
+                        .addGap(14, 14, 14)
+                        .addGroup(panel_cadastrarProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(label_quantidade)
+                            .addComponent(label_nomeProduto)
+                            .addComponent(jLabel1)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_cadastrarProdutoLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(label_tipo)))
+                .addGap(18, 18, 18)
+                .addGroup(panel_cadastrarProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(Campo_nomeProduto)
+                    .addComponent(ComboBox_tipo, 0, 264, Short.MAX_VALUE)
+                    .addComponent(Campo_quantidade)
+                    .addComponent(Campo_preco))
                 .addContainerGap(29, Short.MAX_VALUE))
+            .addGroup(panel_cadastrarProdutoLayout.createSequentialGroup()
+                .addGap(103, 103, 103)
+                .addComponent(btn_salvar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btn_cancelar)
+                .addGap(86, 86, 86))
         );
         panel_cadastrarProdutoLayout.setVerticalGroup(
             panel_cadastrarProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -219,7 +234,11 @@ public class TelaCadastro extends javax.swing.JFrame {
                 .addGroup(panel_cadastrarProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(label_quantidade)
                     .addComponent(Campo_quantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(panel_cadastrarProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Campo_preco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addGroup(panel_cadastrarProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_salvar)
                     .addComponent(btn_cancelar))
@@ -242,24 +261,25 @@ public class TelaCadastro extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(14, 14, 14)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 434, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(panel_cadastrarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(38, 38, 38)
+                                .addGap(18, 18, 18)
+                                .addComponent(panel_cadastrarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(45, 45, 45)
                                 .addComponent(btn_novo)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(86, 86, 86)
                                 .addComponent(btn_editar)
-                                .addGap(57, 57, 57)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btn_excluir)
-                                .addGap(46, 46, 46))))
+                                .addGap(17, 17, 17))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(375, 375, 375)
                         .addComponent(label_cadastroProdutos))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(402, 402, 402)
                         .addComponent(btn_voltar)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -272,7 +292,7 @@ public class TelaCadastro extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(124, 124, 124)
                         .addComponent(panel_cadastrarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(34, 34, 34)
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btn_novo)
                             .addComponent(btn_editar)
@@ -290,12 +310,14 @@ public class TelaCadastro extends javax.swing.JFrame {
         // TODO add your handling code here:
         Campo_quantidade.setText("");
         Campo_nomeProduto.setText("");
+        Campo_preco.setText("");
         modoCadastro = "Novo";
         manipularInterfaceCadastro();
     }//GEN-LAST:event_btn_novoActionPerformed
 
     private void btn_editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editarActionPerformed
         // TODO add your handling code here:
+        modoCadastro= "Editar";
     }//GEN-LAST:event_btn_editarActionPerformed
 
     private void btn_excluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_excluirActionPerformed
@@ -303,22 +325,25 @@ public class TelaCadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_excluirActionPerformed
 
     private void btn_salvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_salvarActionPerformed
-        boolean naoSalvou = true;
-        do{
-            try{
-                int quantidade = Integer.parseInt(Campo_quantidade.getText());
-                String tipo = ((String) ComboBox_tipo.getSelectedItem());
-                ps.CadastrarProduto(Campo_nomeProduto.getText(),1,tipo,quantidade);
-                naoSalvou = false;
-            }
-            catch(InputMismatchException e1){
-                System.out.println("Erro: "+e1);
-            }
-            catch(NullPointerException e2){
-                System.out.println("Erro: "+e2);
-            }
-        } while(naoSalvou);
-        
+        try{
+            int quantidade = Integer.parseInt(Campo_quantidade.getText());
+            String tipo = ((String) ComboBox_tipo.getSelectedItem());
+            int preco = Integer.parseInt(Campo_preco.getText()); //preco do tipo int???
+            ps.CadastrarProduto(Campo_nomeProduto.getText(),preco,tipo,quantidade);
+        }
+        catch(NumberFormatException e1){
+            System.out.println("Erro: "+e1);
+        }
+        catch(NullPointerException e2){
+            System.out.println("Erro: "+e2);
+        }
+        Campo_quantidade.setText("");
+        Campo_nomeProduto.setText("");
+        Campo_preco.setText("");
+        modoCadastro = "Navegar";
+        manipularInterfaceCadastro();
+        btn_editar.setEnabled(true);
+        btn_excluir.setEnabled(true);
     }//GEN-LAST:event_btn_salvarActionPerformed
 
     private void btn_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelarActionPerformed
@@ -326,9 +351,10 @@ public class TelaCadastro extends javax.swing.JFrame {
         int op = JOptionPane.showConfirmDialog(rootPane, "Descartar alterações?","Aviso",JOptionPane.YES_NO_OPTION, 3);
         if(op==0){
             Campo_quantidade.setText("");
-        Campo_nomeProduto.setText("");
-        modoCadastro = "Navegar";
-        manipularInterfaceCadastro();
+            Campo_nomeProduto.setText("");
+            Campo_preco.setText("");
+            modoCadastro = "Navegar";
+            manipularInterfaceCadastro();
         }
     }//GEN-LAST:event_btn_cancelarActionPerformed
 
@@ -339,6 +365,10 @@ public class TelaCadastro extends javax.swing.JFrame {
     private void ComboBox_tipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBox_tipoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ComboBox_tipoActionPerformed
+
+    private void Campo_precoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Campo_precoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Campo_precoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -377,6 +407,7 @@ public class TelaCadastro extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Campo_nomeProduto;
+    private javax.swing.JTextField Campo_preco;
     private javax.swing.JTextField Campo_quantidade;
     private javax.swing.JComboBox<String> ComboBox_tipo;
     private javax.swing.JButton btn_cancelar;
@@ -385,6 +416,7 @@ public class TelaCadastro extends javax.swing.JFrame {
     private javax.swing.JButton btn_novo;
     private javax.swing.JButton btn_salvar;
     private javax.swing.JButton btn_voltar;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel label_cadastroProdutos;
     private javax.swing.JLabel label_nomeProduto;
