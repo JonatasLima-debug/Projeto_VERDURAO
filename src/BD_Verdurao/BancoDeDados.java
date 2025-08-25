@@ -41,11 +41,11 @@ public class BancoDeDados {
         }
     }
 
-    public void inserirProduto(String nome, int preco, String tipo, long quantidade) {
+    public void inserirProduto(String nome, float preco, String tipo, long quantidade) {
         String query = "INSERT INTO produtos (nome, preco, tipo, quantidade) VALUES (?, ?, ?, ?)";
         try (PreparedStatement stmt = this.connection.prepareStatement(query)) {
             stmt.setString(1, nome);
-            stmt.setInt(2, preco);
+            stmt.setFloat(2, preco);
             stmt.setString(3, tipo);
             stmt.setLong(4, quantidade);
             stmt.executeUpdate();
@@ -54,11 +54,11 @@ public class BancoDeDados {
         }
     }
 
-    public void editarProdutos(int id, String nome, int preco, String tipo, long quantidade) {
+    public void editarProdutos(int id, String nome, float preco, String tipo, long quantidade) {
         String query = "UPDATE produtos SET nome = ?, preco = ?, tipo = ?, quantidade = ? WHERE id = ?";
         try (PreparedStatement stmt = this.connection.prepareStatement(query)) {
             stmt.setString(1, nome);
-            stmt.setInt(2, preco);
+            stmt.setFloat(2, preco);
             stmt.setString(3, tipo);
             stmt.setLong(4, quantidade);
             stmt.setInt(5, id);
@@ -95,7 +95,7 @@ public class BancoDeDados {
             while (rs.next()) {
                 int id = rs.getInt("id");
                 String nome = rs.getString("nome");
-                int preco = rs.getInt("preco");
+                float preco = rs.getInt("preco");
                 String tipo = rs.getString("tipo");
                 long quantidade = rs.getLong("quantidade");
                 System.out.println("ID: " + id + " | Nome: " + nome + " | Preco: " + preco + " | Tipo: " + tipo + " | Quantidade: " + quantidade);
@@ -116,7 +116,7 @@ public class BancoDeDados {
                 while (rs.next()) {
                     int id = rs.getInt("id");
                     String nome = rs.getString("nome");
-                    int preco = rs.getInt("preco");
+                   float preco = rs.getInt("preco");
                     String tipo = rs.getString("tipo");
                     long quantidade = rs.getLong("quantidade");
                     System.out.println("ID: " + id + " | Nome: " + nome + " | Preco: " + preco + " | Tipo: " + tipo + " | Quantidade: " + quantidade);
@@ -131,13 +131,13 @@ public class BancoDeDados {
         }
     }
 
-    public int obterPrecoProduto(String nomeProduto) {
+    public float obterPrecoProduto(String nomeProduto) {
         String query = "SELECT preco FROM produtos WHERE nome = ?";
         try (PreparedStatement stmt = this.connection.prepareStatement(query)) {
             stmt.setString(1, nomeProduto);
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
-                    return rs.getInt("preco");
+                    return rs.getFloat("preco");
                 } else {
                     System.out.println("Produto não encontrado: " + nomeProduto);
                     return -1;

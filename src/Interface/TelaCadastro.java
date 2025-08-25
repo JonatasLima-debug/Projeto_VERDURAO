@@ -26,6 +26,7 @@ public class TelaCadastro extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         bd = new BancoDeDados();
+        bd.conectar();
         pd = new ProdutoDAO(bd);
         ps = new ProdutoService(pd);
         modoCadastro = "Navegar";
@@ -302,25 +303,36 @@ public class TelaCadastro extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_excluirActionPerformed
 
-    private void btn_salvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_salvarActionPerformed
-        boolean naoSalvou = true;
-        do{
-            try{
-                int quantidade = Integer.parseInt(Campo_quantidade.getText());
-                String tipo = ((String) ComboBox_tipo.getSelectedItem());
-                ps.CadastrarProduto(Campo_nomeProduto.getText(),1,tipo,quantidade);
-                naoSalvou = false;
-            }
-            catch(InputMismatchException e1){
-                System.out.println("Erro: "+e1);
-            }
-            catch(NullPointerException e2){
-                System.out.println("Erro: "+e2);
-            }
-        } while(naoSalvou);
+    
+    private void btn_salvarActionPerformed(java.awt.event.ActionEvent evt) {                                           
+    try {
+        int quantidade = Integer.parseInt(Campo_quantidade.getText());
+        String tipo = (String) ComboBox_tipo.getSelectedItem();
         
+        ps.CadastrarProduto(Campo_nomeProduto.getText(), 1, tipo, quantidade);
+        
+        JOptionPane.showMessageDialog(this, "Produto salvo com sucesso!");
+        modoCadastro = "Navegar";
+        manipularInterfaceCadastro();
+    } 
+    catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(this, "Quantidade inválida. Digite apenas números.");
+    } 
+    catch (NullPointerException e) {
+        JOptionPane.showMessageDialog(this, "Erro: campos não preenchidos corretamente.");
+    }
+}
+    /*
+    private void btn_salvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_salvarActionPerformed
+          int quantidade = Integer.parseInt(Campo_quantidade.getText());
+          String tipo = (String) ComboBox_tipo.getSelectedItem();
+          
+          ps.CadastrarProduto(Campo_nomeProduto.getText(), 1, tipo, quantidade);
+          
+          
     }//GEN-LAST:event_btn_salvarActionPerformed
-
+*/
+    
     private void btn_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelarActionPerformed
         // TODO add your handling code here:
         int op = JOptionPane.showConfirmDialog(rootPane, "Descartar alterações?","Aviso",JOptionPane.YES_NO_OPTION, 3);

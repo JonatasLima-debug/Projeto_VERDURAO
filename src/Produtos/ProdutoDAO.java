@@ -45,14 +45,14 @@ public class ProdutoDAO {
     }
 
     // Buscar preço por nome
-    public int obterPrecoPorNome(String nomeProduto) {
+    public float obterPrecoPorNome(String nomeProduto) {
         String sql = "SELECT preco FROM produtos WHERE UPPER(nome) = ?";
         try (Connection conn = BancoDeDados.getConexao();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setString(1, nomeProduto.toUpperCase());
             try (ResultSet rs = stmt.executeQuery()) {
-                if (rs.next()) return rs.getInt("preco");
+                if (rs.next()) return rs.getFloat("preco");
             }
         } catch (SQLException e) {
             e.printStackTrace();

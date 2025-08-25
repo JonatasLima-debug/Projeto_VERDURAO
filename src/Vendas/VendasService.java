@@ -24,7 +24,7 @@ public class VendasService {
         }
 
         // Obter preço unitário e ID do produto
-        int precoUnitario = produtoService.obterPrecoPorNome(nomeProduto);
+        float precoUnitario = produtoService.obterPrecoPorNome(nomeProduto);
         int idProduto = produtoService.obterIdPorNome(nomeProduto);
 
         if (idProduto == -1) {

@@ -21,7 +21,7 @@ public class ProdutoService {
             return false;
         }
 
-        int precoUnitario = dao.obterPrecoPorNome(nomeProduto);
+        float precoUnitario = dao.obterPrecoPorNome(nomeProduto);
         long estoqueAtual = dao.obterQuantidadePorNome(nomeProduto);
 
         if (precoUnitario == -1 || estoqueAtual == -1) {
@@ -47,11 +47,11 @@ public class ProdutoService {
         return dao.obterIdPorNome(nomeProduto);
     }
 
-    public int obterPrecoPorNome(String nomeProduto) {
+    public float obterPrecoPorNome(String nomeProduto) {
         return dao.obterPrecoPorNome(nomeProduto);
     }
 
-    public void CadastrarProduto(String nome, int preco, String tipo, long quantidade) {
+    public void CadastrarProduto(String nome, float preco, String tipo, long quantidade) {
         if (nome == null || nome.trim().isEmpty()) return;
         if (preco <= 0 || quantidade < 0) return;
         if (dao.produtoExiste(nome.toUpperCase())) return;
@@ -64,7 +64,7 @@ public class ProdutoService {
         dao.inserir(p);
     }
 
-    public void EditarProduto(String nome, int preco, String tipo, long quantidade) {
+    public void EditarProduto(String nome,float preco, String tipo, long quantidade) {
         if (nome == null || nome.trim().isEmpty()) return;
         if (preco <= 0 || quantidade < 0) return;
 

@@ -157,10 +157,10 @@ public class InterfaceMain extends JFrame { // 🔹 aqui estava faltando extends
     }
 
     // -----------------------------
-    public static void main(String[] args) {
+   /*public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
             InterfaceMain janela = new InterfaceMain();
             janela.setVisible(true);
         });
-    }
+    }*/
 }

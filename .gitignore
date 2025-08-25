@@ -10,3 +10,4 @@
 /nbproject/private/
 *.class
 *.jar
+/build/
