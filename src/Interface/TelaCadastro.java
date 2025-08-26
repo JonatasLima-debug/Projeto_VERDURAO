@@ -10,8 +10,11 @@ package Interface;
  */
 import Produtos.*;
 import BD_Verdurao.*;
+import java.awt.event.ActionEvent;
 import java.util.InputMismatchException;
+import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 public class TelaCadastro extends javax.swing.JFrame {
     String modoCadastro;
@@ -31,8 +34,22 @@ public class TelaCadastro extends javax.swing.JFrame {
         ps = new ProdutoService(pd);
         modoCadastro = "Navegar";
         manipularInterfaceCadastro();
+        TabelaCadastroBD();
     }
     
+    public void TabelaCadastroBD(){
+        DefaultTableModel tabela = new DefaultTableModel(new Object[] {"ID", "Nome do Produto","Tipo","Quantidade","Preço"},0);
+        List<Produtos> todosProdutos = ps.dao.buscarTodos();
+        
+        try{
+          for(Produtos p : todosProdutos )
+            tabela.addRow(new Object[]{p.getId(),p.getNome(),p.getTipo(),p.getQuantidade(),p.getPreco()});  
+        }
+        catch(Exception erro){
+            System.out.println(erro);
+        }
+        tabela_produtos.setModel(tabela);
+    }
     public void manipularInterfaceCadastro(){
         switch(modoCadastro){
             case("Navegar"):
@@ -106,20 +123,20 @@ public class TelaCadastro extends javax.swing.JFrame {
 
         tabela_produtos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Nome do Produto", "Tipo", "Quantidade", "Preço por unidade"
+                "ID", "Nome do Produto", "Tipo", "Quantidade", "Preço por Kg"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Double.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Double.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -128,6 +145,11 @@ public class TelaCadastro extends javax.swing.JFrame {
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        tabela_produtos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabela_produtosMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(tabela_produtos);
@@ -166,7 +188,7 @@ public class TelaCadastro extends javax.swing.JFrame {
             }
         });
 
-        label_quantidade.setText("Quantidade:");
+        label_quantidade.setText("Quantidade (em kg) :");
 
         btn_salvar.setText("Salvar");
         btn_salvar.addActionListener(new java.awt.event.ActionListener() {
@@ -279,7 +301,7 @@ public class TelaCadastro extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(402, 402, 402)
                         .addComponent(btn_voltar)))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -317,44 +339,67 @@ public class TelaCadastro extends javax.swing.JFrame {
 
     private void btn_editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editarActionPerformed
         // TODO add your handling code here:
-        modoCadastro= "Editar";
+        modoCadastro = "Editar";
+        manipularInterfaceCadastro();
+        TabelaCadastroBD();
     }//GEN-LAST:event_btn_editarActionPerformed
 
     private void btn_excluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_excluirActionPerformed
         // TODO add your handling code here:
+        int click = tabela_produtos.getSelectedRow();
+        if(click!=-1){
+            String id = tabela_produtos.getValueAt(click, 0).toString();
+            String nome = (String) tabela_produtos.getValueAt(click, 1);
+            
+            int excluir = JOptionPane.showConfirmDialog(rootPane,"Deseja realmente excluir o produto \"" + nome + "\"?","Confirmar exclusão", JOptionPane.YES_NO_OPTION);
+            if(excluir == 1){
+                try {
+                    ps.ExcluirProduto(Integer.parseInt(id)); // precisa ter esse método no ProdutoService/DAO
+                    JOptionPane.showMessageDialog(this, "Produto excluído com sucesso!");
+                    TabelaCadastroBD(); // recarrega tabela
+                 } 
+                catch (Exception e) {
+                    JOptionPane.showMessageDialog(this, "Erro ao excluir: " + e.getMessage());
+                }
+            }
+            else{
+                modoCadastro="Navegar";
+                manipularInterfaceCadastro();
+            }
+            TabelaCadastroBD();
+        }
     }//GEN-LAST:event_btn_excluirActionPerformed
 
     private void btn_salvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_salvarActionPerformed
-        String nome = Campo_nomeProduto.getText();
-        int quantidade = Integer.parseInt(Campo_quantidade.getText());
-        String tipo = (String) ComboBox_tipo.getSelectedItem();
-        float preco = Float.parseFloat(Campo_preco.getText());
-        
-        if(modoCadastro.equals("Novo")){
-            try{
-              ps.CadastrarProduto(nome, preco, tipo, quantidade);
-              JOptionPane.showMessageDialog(this, "Produto salvo com sucesso!");  
+        try{
+            String nome = Campo_nomeProduto.getText();
+            int quantidade = Integer.parseInt(Campo_quantidade.getText());
+            String tipo = (String) ComboBox_tipo.getSelectedItem();
+            float preco = Float.parseFloat(Campo_preco.getText());  
+            if(modoCadastro.equals("Novo")){
+               ps.CadastrarProduto(nome, preco, tipo, quantidade);
+               JOptionPane.showMessageDialog(this, "Produto salvo com sucesso!");  
             }
-            catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(this, "Quantidade inválida. Digite apenas números.");
+            else if(modoCadastro.equals("Editar")){
+                ps.EditarProduto(nome, preco, tipo, quantidade);
+                JOptionPane.showMessageDialog(this, "Produto editado com sucesso!");  
             } 
-            catch (NullPointerException e) {
-                JOptionPane.showMessageDialog(this, "Erro: campos não preenchidos corretamente.");
-            }
-            modoCadastro = "Navegar";
-            manipularInterfaceCadastro();
         }
-        else if(modoCadastro.equals("Editar")){
-            ps.EditarProduto(nome, preco, tipo, quantidade);
+        catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Quantidade inválida. Digite apenas números.");
         }
+        catch (NullPointerException e) {
+            JOptionPane.showMessageDialog(this, "Erro: campos não preenchidos corretamente.");
+         }
         
+        TabelaCadastroBD();
+        modoCadastro = "Navegar";
+        manipularInterfaceCadastro();
         Campo_quantidade.setText("");
         Campo_nomeProduto.setText("");
         Campo_preco.setText("");
         modoCadastro = "Navegar";
         manipularInterfaceCadastro();
-        btn_editar.setEnabled(true);
-        btn_excluir.setEnabled(true);
     }//GEN-LAST:event_btn_salvarActionPerformed
 
     private void btn_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelarActionPerformed
@@ -380,6 +425,26 @@ public class TelaCadastro extends javax.swing.JFrame {
     private void Campo_precoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Campo_precoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Campo_precoActionPerformed
+
+    private void tabela_produtosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabela_produtosMouseClicked
+        // TODO add your handling code here:
+        int click = tabela_produtos.getSelectedRow();
+        if(click!=-1){
+            String id = tabela_produtos.getValueAt(click, 0).toString();
+            String nome = (String) tabela_produtos.getValueAt(click, 1);
+            String tipo = (String) tabela_produtos.getValueAt(click, 2);
+            String quantidade = tabela_produtos.getValueAt(click, 3).toString();
+            String preco = tabela_produtos.getValueAt(click, 4).toString();
+            
+            Campo_nomeProduto.setText(nome);
+            Campo_preco.setText(preco);
+            ComboBox_tipo.setSelectedItem(tipo);
+            Campo_quantidade.setText(quantidade);
+            
+            btn_editar.setEnabled(true);
+            btn_excluir.setEnabled(true);
+        }
+    }//GEN-LAST:event_tabela_produtosMouseClicked
 
     /**
      * @param args the command line arguments
