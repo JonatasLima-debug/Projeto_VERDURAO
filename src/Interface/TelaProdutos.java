@@ -44,7 +44,7 @@ public class TelaProdutos extends JFrame {
             modeloTabela.addRow(new Object[]{
                     p.getId(),
                     p.getNome(),
-                    String.format("R$ %.2f", p.getPreco() / 100.0), // centavos para reais
+                    String.format("R$ %.2f", p.getPreco() /100), // centavos para reais
                     p.getTipo(),
                     p.getQuantidade()
             });

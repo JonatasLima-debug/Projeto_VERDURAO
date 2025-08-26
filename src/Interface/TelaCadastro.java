@@ -38,12 +38,14 @@ public class TelaCadastro extends javax.swing.JFrame {
     }
     
     public void TabelaCadastroBD(){
-        DefaultTableModel tabela = new DefaultTableModel(new Object[] {"ID", "Nome do Produto","Tipo","Quantidade","Preço por Kg"},0);
+        DefaultTableModel tabela = new DefaultTableModel(new Object[] {"ID", "Nome do Produto","Tipo","Quantidade","Preço por kg"},0);
         List<Produtos> todosProdutos = ps.dao.buscarTodos();
         
+        
         try{
-          for(Produtos p : todosProdutos )
-            tabela.addRow(new Object[]{p.getId(),p.getNome(),p.getTipo(),p.getQuantidade(),p.getPreco()});  
+          for(Produtos p : todosProdutos ){
+            tabela.addRow(new Object[]{p.getId(),p.getNome(),p.getTipo(),p.getQuantidade(),p.getPreco()});
+          }  
         }
         catch(Exception erro){
             System.out.println(erro);
@@ -129,7 +131,7 @@ public class TelaCadastro extends javax.swing.JFrame {
                 {null, null, null, null, null}
             },
             new String [] {
-                "ID", "Nome do Produto", "Tipo", "Quantidade", "Preço por Kg"
+                "ID", "Nome do Produto", "Tipo", "Quantidade", "Preço por kg"
             }
         ) {
             Class[] types = new Class [] {
@@ -204,7 +206,7 @@ public class TelaCadastro extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("Preço:");
+        jLabel1.setText("Preço por kg:");
 
         Campo_preco.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -373,23 +375,41 @@ public class TelaCadastro extends javax.swing.JFrame {
         try{
             String nome = Campo_nomeProduto.getText();
             int quantidade = Integer.parseInt(Campo_quantidade.getText());
+            if(quantidade <= 0){
+                JOptionPane.showMessageDialog(rootPane, "A quantidade deve ser maior do que 0.","Quantidade inválida",2);
+                Campo_quantidade.setText("");
+                Campo_nomeProduto.setText("");
+                Campo_preco.setText("");
+                modoCadastro = "Navegar";
+                manipularInterfaceCadastro();
+                return;
+            }
             String tipo = (String) ComboBox_tipo.getSelectedItem();
-            float preco = Float.parseFloat(Campo_preco.getText());  
+            float preco = Float.parseFloat(Campo_preco.getText());
+            if(preco <= 0){
+                JOptionPane.showMessageDialog(rootPane, "O preço deve ser maior do que 0.","Preço inválido",2);
+                Campo_quantidade.setText("");
+                Campo_nomeProduto.setText("");
+                Campo_preco.setText("");
+                modoCadastro = "Navegar";
+                manipularInterfaceCadastro();
+                return;
+            }
             if(modoCadastro.equals("Novo")){
                ps.CadastrarProduto(nome, preco, tipo, quantidade);
-               JOptionPane.showMessageDialog(this, "Produto salvo com sucesso!");  
+               JOptionPane.showMessageDialog(rootPane, "Produto salvo com sucesso!", "Cadastro", 1);  
             }
             else if(modoCadastro.equals("Editar")){
                 int id = ps.obterIdPorNome(nome);
                 ps.EditarProduto(id,nome, preco, tipo, quantidade);
-                JOptionPane.showMessageDialog(this, "Produto editado com sucesso!");  
+                JOptionPane.showMessageDialog(rootPane, "Produto editado com sucesso!", "Edição", 1);  
             } 
         }
         catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "Quantidade inválida. Digite apenas números.");
+            JOptionPane.showMessageDialog(rootPane, "Dados inválidos. Preencha corretamente os campos.","Dados inválidos",2);
         }
         catch (NullPointerException e) {
-            JOptionPane.showMessageDialog(this, "Erro: campos não preenchidos corretamente.");
+            JOptionPane.showMessageDialog(rootPane, "Erro: campos não preenchidos corretamente.", "Campos vazios", 2);
          }
         
         TabelaCadastroBD();
