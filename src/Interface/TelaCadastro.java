@@ -38,7 +38,7 @@ public class TelaCadastro extends javax.swing.JFrame {
     }
     
     public void TabelaCadastroBD(){
-        DefaultTableModel tabela = new DefaultTableModel(new Object[] {"ID", "Nome do Produto","Tipo","Quantidade","Preço"},0);
+        DefaultTableModel tabela = new DefaultTableModel(new Object[] {"ID", "Nome do Produto","Tipo","Quantidade","Preço por Kg"},0);
         List<Produtos> todosProdutos = ps.dao.buscarTodos();
         
         try{
