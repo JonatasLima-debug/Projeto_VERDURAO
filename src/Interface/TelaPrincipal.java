@@ -118,8 +118,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_estoqueActionPerformed
 
     private void btn_sairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_sairActionPerformed
-        int opcao = JOptionPane.showConfirmDialog(rootPane, "Deseja fechar o programa?", "Aviso", 2);
-        
+        int opcao = JOptionPane.showConfirmDialog(rootPane, "Deseja fechar o programa?", "Aviso",JOptionPane.YES_NO_OPTION , 3);
         if(opcao == 0)
             System.exit(0);
     }//GEN-LAST:event_btn_sairActionPerformed

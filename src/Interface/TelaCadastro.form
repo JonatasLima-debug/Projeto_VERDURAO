@@ -280,6 +280,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="Campo_quantidade">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Campo_quantidadeActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btn_salvar">
           <Properties>
