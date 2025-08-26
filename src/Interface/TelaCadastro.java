@@ -341,7 +341,6 @@ public class TelaCadastro extends javax.swing.JFrame {
         // TODO add your handling code here:
         modoCadastro = "Editar";
         manipularInterfaceCadastro();
-        TabelaCadastroBD();
     }//GEN-LAST:event_btn_editarActionPerformed
 
     private void btn_excluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_excluirActionPerformed
@@ -352,7 +351,7 @@ public class TelaCadastro extends javax.swing.JFrame {
             String nome = (String) tabela_produtos.getValueAt(click, 1);
             
             int excluir = JOptionPane.showConfirmDialog(rootPane,"Deseja realmente excluir o produto \"" + nome + "\"?","Confirmar exclusão", JOptionPane.YES_NO_OPTION);
-            if(excluir == 1){
+            if(excluir == 0){
                 try {
                     ps.ExcluirProduto(Integer.parseInt(id)); // precisa ter esse método no ProdutoService/DAO
                     JOptionPane.showMessageDialog(this, "Produto excluído com sucesso!");
@@ -393,8 +392,6 @@ public class TelaCadastro extends javax.swing.JFrame {
          }
         
         TabelaCadastroBD();
-        modoCadastro = "Navegar";
-        manipularInterfaceCadastro();
         Campo_quantidade.setText("");
         Campo_nomeProduto.setText("");
         Campo_preco.setText("");
@@ -430,7 +427,6 @@ public class TelaCadastro extends javax.swing.JFrame {
         // TODO add your handling code here:
         int click = tabela_produtos.getSelectedRow();
         if(click!=-1){
-            String id = tabela_produtos.getValueAt(click, 0).toString();
             String nome = (String) tabela_produtos.getValueAt(click, 1);
             String tipo = (String) tabela_produtos.getValueAt(click, 2);
             String quantidade = tabela_produtos.getValueAt(click, 3).toString();
