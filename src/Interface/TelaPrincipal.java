@@ -113,7 +113,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_caixaActionPerformed
 
     private void btn_estoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_estoqueActionPerformed
-        // TODO add your handling code here:
+        InterfaceMain telaEstoque = new InterfaceMain();
+        telaEstoque.setVisible(true);
     }//GEN-LAST:event_btn_estoqueActionPerformed
 
     private void btn_sairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_sairActionPerformed

@@ -166,7 +166,7 @@ public class TelaCadastro extends javax.swing.JFrame {
             }
         });
 
-        label_quantidade.setText("Quantidade:");
+        label_quantidade.setText("Quantidade (em kg) :");
 
         btn_salvar.setText("Salvar");
         btn_salvar.addActionListener(new java.awt.event.ActionListener() {
@@ -279,7 +279,7 @@ public class TelaCadastro extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(402, 402, 402)
                         .addComponent(btn_voltar)))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -324,7 +324,7 @@ public class TelaCadastro extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_excluirActionPerformed
 
-<<<<<<< HEAD
+/*<<<<<<< HEAD*/
     
     private void btn_salvarActionPerformed(java.awt.event.ActionEvent evt) {                                           
     try {
@@ -345,7 +345,7 @@ public class TelaCadastro extends javax.swing.JFrame {
     }
 }
     /*
-    private void btn_salvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_salvarActionPerformed
+    private void btn_salvarActionPerformed(java.awt.event.ActionEvent evt) {                                           
           int quantidade = Integer.parseInt(Campo_quantidade.getText());
           String tipo = (String) ComboBox_tipo.getSelectedItem();
           

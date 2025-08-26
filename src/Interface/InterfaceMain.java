@@ -43,8 +43,8 @@ public class InterfaceMain extends JFrame { // 🔹 aqui estava faltando extends
         // Abas
         JTabbedPane abas = new JTabbedPane();
         abas.add("Estoque", painelEstoque());
-        abas.add("Vendas", painelVendas());
-        abas.add("Vendas do Dia", painelVendasDoDia());
+        //abas.add("Vendas", painelVendas());
+        //abas.add("Vendas do Dia", painelVendasDoDia());
 
         add(abas);
 
@@ -74,14 +74,14 @@ public class InterfaceMain extends JFrame { // 🔹 aqui estava faltando extends
                     p.getId(),
                     p.getNome(),
                     p.getTipo(),
-                    p.getPreco() / 100.0,
+                    p.getPreco(),
                     p.getQuantidade()
             });
         }
 
         tabelaEstoque.setModel(model);
     }
-
+/*
     // -----------------------------
     private JPanel painelVendas() {
         JPanel panel = new JPanel(new GridLayout(5, 2, 10, 10));
@@ -116,12 +116,12 @@ public class InterfaceMain extends JFrame { // 🔹 aqui estava faltando extends
 
         // Atualizar a tabela de estoque e vendas do dia
         atualizarEstoque();
-        atualizarVendasDoDia();
+        //atualizarVendasDoDia();
     }
-
+*/
 
     // -----------------------------
-    private JPanel painelVendasDoDia() {
+    /*private JPanel painelVendasDoDia() {
         JPanel panel = new JPanel(new BorderLayout());
         tabelaVendas = new JTable();
         panel.add(new JScrollPane(tabelaVendas), BorderLayout.CENTER);
@@ -155,12 +155,13 @@ public class InterfaceMain extends JFrame { // 🔹 aqui estava faltando extends
 
         tabelaVendas.setModel(model);
     }
+*/
 
     // -----------------------------
-   /*public static void main(String[] args) {
+   public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
             InterfaceMain janela = new InterfaceMain();
             janela.setVisible(true);
         });
-    }*/
+    }
 }
