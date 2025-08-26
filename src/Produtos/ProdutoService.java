@@ -64,12 +64,13 @@ public class ProdutoService {
         dao.inserir(p);
     }
 
-    public void EditarProduto(String nome,float preco, String tipo, long quantidade) {
+    public void EditarProduto(int id, String nome,float preco, String tipo, long quantidade) {
         if (nome == null || nome.trim().isEmpty()) return;
         if (preco <= 0 || quantidade < 0) return;
 
         if (dao.produtoExiste(nome.toUpperCase())) {
             Produtos p = new Produtos();
+            p.setId(id);
             p.setNome(nome.toUpperCase());
             p.setPreco(preco);
             p.setTipo(tipo);

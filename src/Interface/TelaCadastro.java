@@ -380,7 +380,8 @@ public class TelaCadastro extends javax.swing.JFrame {
                JOptionPane.showMessageDialog(this, "Produto salvo com sucesso!");  
             }
             else if(modoCadastro.equals("Editar")){
-                ps.EditarProduto(nome, preco, tipo, quantidade);
+                int id = ps.obterIdPorNome(nome);
+                ps.EditarProduto(id,nome, preco, tipo, quantidade);
                 JOptionPane.showMessageDialog(this, "Produto editado com sucesso!");  
             } 
         }
