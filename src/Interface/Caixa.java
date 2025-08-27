@@ -37,6 +37,7 @@ public class Caixa extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        Popup_buscarProd = new javax.swing.JPopupMenu();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabela_compras = new javax.swing.JTable();
@@ -44,17 +45,16 @@ public class Caixa extends javax.swing.JFrame {
         ComboBox_tipo = new javax.swing.JComboBox<>();
         label_tipo = new javax.swing.JLabel();
         label_produto = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
         label_quantidade = new javax.swing.JLabel();
         campo_quantidade = new javax.swing.JTextField();
         btn_adicionarLista = new javax.swing.JButton();
         btn_removerLista = new javax.swing.JButton();
         label_total = new javax.swing.JLabel();
+        campo_nomeProduto = new javax.swing.JTextField();
         label_realizarVenda = new javax.swing.JLabel();
         btn_voltar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(800, 600));
 
         jPanel1.setPreferredSize(new java.awt.Dimension(410, 560));
 
@@ -116,8 +116,6 @@ public class Caixa extends javax.swing.JFrame {
 
         label_produto.setText("Produto:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         label_quantidade.setText("Quantidade:");
 
         btn_adicionarLista.setText("Adicionar à Lista");
@@ -139,6 +137,13 @@ public class Caixa extends javax.swing.JFrame {
         label_total.setText(" TOTAL: R$//setText depois para alterar ");
         label_total.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
+        campo_nomeProduto.setComponentPopupMenu(Popup_buscarProd);
+        campo_nomeProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campo_nomeProdutoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -159,10 +164,10 @@ public class Caixa extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(ComboBox_tipo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(campo_quantidade, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
-                                .addGap(232, 232, 232))))
+                                .addGap(232, 232, 232))
+                            .addComponent(campo_nomeProduto)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(55, 55, 55)
                         .addComponent(btn_adicionarLista)
@@ -179,9 +184,9 @@ public class Caixa extends javax.swing.JFrame {
                     .addComponent(ComboBox_tipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(label_tipo))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(label_produto)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(campo_nomeProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(label_quantidade)
@@ -190,7 +195,7 @@ public class Caixa extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_adicionarLista)
                     .addComponent(btn_removerLista))
-                .addGap(18, 18, Short.MAX_VALUE)
+                .addGap(18, 34, Short.MAX_VALUE)
                 .addComponent(label_total, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -256,6 +261,10 @@ public class Caixa extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btn_voltarActionPerformed
 
+    private void campo_nomeProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campo_nomeProdutoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campo_nomeProdutoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -293,11 +302,12 @@ public class Caixa extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> ComboBox_tipo;
+    private javax.swing.JPopupMenu Popup_buscarProd;
     private javax.swing.JButton btn_adicionarLista;
     private javax.swing.JButton btn_removerLista;
     private javax.swing.JButton btn_voltar;
+    private javax.swing.JTextField campo_nomeProduto;
     private javax.swing.JTextField campo_quantidade;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
