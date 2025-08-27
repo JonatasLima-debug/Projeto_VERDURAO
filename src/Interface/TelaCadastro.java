@@ -11,7 +11,6 @@ package Interface;
 import Produtos.*;
 import BD_Verdurao.*;
 import java.awt.event.ActionEvent;
-import java.util.InputMismatchException;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -38,13 +37,13 @@ public class TelaCadastro extends javax.swing.JFrame {
     }
     
     public void TabelaCadastroBD(){
-        DefaultTableModel tabela = new DefaultTableModel(new Object[] {"ID", "Nome do Produto","Tipo","Quantidade","Preço por kg"},0);
+        DefaultTableModel tabela = new DefaultTableModel(new Object[] {"ID", "Nome do Produto","Tipo","Preço por kg","Quantidade" },0);
         List<Produtos> todosProdutos = ps.dao.buscarTodos();
         
         
         try{
           for(Produtos p : todosProdutos ){
-            tabela.addRow(new Object[]{p.getId(),p.getNome(),p.getTipo(),p.getQuantidade(),p.getPreco()});
+            tabela.addRow(new Object[]{p.getId(),p.getNome(),p.getTipo(),p.getPreco(),p.getQuantidade()});
           }  
         }
         catch(Exception erro){
@@ -131,11 +130,11 @@ public class TelaCadastro extends javax.swing.JFrame {
                 {null, null, null, null, null}
             },
             new String [] {
-                "ID", "Nome do Produto", "Tipo", "Quantidade", "Preço por kg"
+                "ID", "Nome do Produto", "Tipo", "Preço por kg", "Quantidade"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Double.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false
@@ -450,8 +449,8 @@ public class TelaCadastro extends javax.swing.JFrame {
         if(click!=-1){
             String nome = (String) tabela_produtos.getValueAt(click, 1);
             String tipo = (String) tabela_produtos.getValueAt(click, 2);
-            String quantidade = tabela_produtos.getValueAt(click, 3).toString();
-            String preco = tabela_produtos.getValueAt(click, 4).toString();
+            String preco = tabela_produtos.getValueAt(click, 3).toString();
+            String quantidade = tabela_produtos.getValueAt(click, 4).toString();
             
             Campo_nomeProduto.setText(nome);
             Campo_preco.setText(preco);
