@@ -61,14 +61,14 @@ public class ProdutoDAO {
     }
 
     // Buscar quantidade por nome
-    public long obterQuantidadePorNome(String nomeProduto) {
+    public float obterQuantidadePorNome(String nomeProduto) {
         String sql = "SELECT quantidade FROM produtos WHERE UPPER(nome) = ?";
         try (Connection conn = BancoDeDados.getConexao();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setString(1, nomeProduto.toUpperCase());
             try (ResultSet rs = stmt.executeQuery()) {
-                if (rs.next()) return rs.getLong("quantidade");
+                if (rs.next()) return rs.getFloat("quantidade");
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -77,12 +77,12 @@ public class ProdutoDAO {
     }
 
     // Atualizar quantidade após venda pelo nome
-    public void atualizarQuantidadePosVenda(String nomeProduto, long novaQuantidade) {
+    public void atualizarQuantidadePosVenda(String nomeProduto, float novaQuantidade) {
         String sql = "UPDATE produtos SET quantidade = ? WHERE UPPER(nome) = ?";
         try (Connection conn = BancoDeDados.getConexao();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            stmt.setLong(1, novaQuantidade);
+            stmt.setFloat(1, novaQuantidade);
             stmt.setString(2, nomeProduto.toUpperCase());
             stmt.executeUpdate();
         } catch (SQLException e) {
@@ -140,9 +140,9 @@ public class ProdutoDAO {
                 Produtos p = new Produtos();
                 p.setId(rs.getInt("id"));
                 p.setNome(rs.getString("nome"));
-                p.setPreco(rs.getInt("preco"));
+                p.setPreco(rs.getFloat("preco"));
                 p.setTipo(rs.getString("tipo"));
-                p.setQuantidade(rs.getLong("quantidade"));
+                p.setQuantidade(rs.getFloat("quantidade"));
                 lista.add(p);
             }
         } catch (SQLException e) {

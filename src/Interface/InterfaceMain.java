@@ -44,7 +44,7 @@ public class InterfaceMain extends JFrame { // 🔹 aqui estava faltando extends
         JTabbedPane abas = new JTabbedPane();
         abas.add("Estoque", painelEstoque());
         //abas.add("Vendas", painelVendas());
-        //abas.add("Vendas do Dia", painelVendasDoDia());
+        abas.add("Vendas do Dia", painelVendasDoDia());
 
         add(abas);
 
@@ -121,7 +121,7 @@ public class InterfaceMain extends JFrame { // 🔹 aqui estava faltando extends
 */
 
     // -----------------------------
-    /*private JPanel painelVendasDoDia() {
+    private JPanel painelVendasDoDia() {
         JPanel panel = new JPanel(new BorderLayout());
         tabelaVendas = new JTable();
         panel.add(new JScrollPane(tabelaVendas), BorderLayout.CENTER);
@@ -155,7 +155,7 @@ public class InterfaceMain extends JFrame { // 🔹 aqui estava faltando extends
 
         tabelaVendas.setModel(model);
     }
-*/
+
 
     // -----------------------------
    public static void main(String[] args) {

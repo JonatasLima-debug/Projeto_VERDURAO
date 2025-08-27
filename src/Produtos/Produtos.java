@@ -6,11 +6,11 @@ public class Produtos {
     private String nome;
     private String tipo;
     private float preco;       // preço acho melhor padronizarmos em reais, no banco de dados ele aceita o formato: 99.99
-    private long quantidade; //Acho melhor padronizarmos a quantidade em gramas
+    private float quantidade; //Acho melhor padronizarmos a quantidade em gramas
 
     public Produtos() {}
 
-    public Produtos(int id, String nome, String tipo, float preco, long quantidade) {
+    public Produtos(int id, String nome, String tipo, float preco, float quantidade) {
         this.id = id;
         this.nome = nome;
         this.tipo = tipo;
@@ -31,6 +31,6 @@ public class Produtos {
     public float getPreco() { return preco; }
     public void setPreco(float preco) { this.preco = preco; }
 
-    public long getQuantidade() { return quantidade; }
-    public void setQuantidade(long quantidade) { this.quantidade = quantidade; }
+    public float getQuantidade() { return quantidade; }
+    public void setQuantidade(float quantidade) { this.quantidade = quantidade; }
 }

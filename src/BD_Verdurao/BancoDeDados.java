@@ -41,26 +41,26 @@ public class BancoDeDados {
         }
     }
 
-    public void inserirProduto(String nome, float preco, String tipo, long quantidade) {
+    public void inserirProduto(String nome, float preco, String tipo, float quantidade) {
         String query = "INSERT INTO produtos (nome, preco, tipo, quantidade) VALUES (?, ?, ?, ?)";
         try (PreparedStatement stmt = this.connection.prepareStatement(query)) {
             stmt.setString(1, nome);
             stmt.setFloat(2, preco);
             stmt.setString(3, tipo);
-            stmt.setLong(4, quantidade);
+            stmt.setFloat(4, quantidade);
             stmt.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(BancoDeDados.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    public void editarProdutos(int id, String nome, float preco, String tipo, long quantidade) {
+    public void editarProdutos(int id, String nome, float preco, String tipo, float quantidade) {
         String query = "UPDATE produtos SET nome = ?, preco = ?, tipo = ?, quantidade = ? WHERE id = ?";
         try (PreparedStatement stmt = this.connection.prepareStatement(query)) {
             stmt.setString(1, nome);
             stmt.setFloat(2, preco);
             stmt.setString(3, tipo);
-            stmt.setLong(4, quantidade);
+            stmt.setFloat(4, quantidade);
             stmt.setInt(5, id);
             stmt.executeUpdate();
         } catch (SQLException ex) {
@@ -95,9 +95,9 @@ public class BancoDeDados {
             while (rs.next()) {
                 int id = rs.getInt("id");
                 String nome = rs.getString("nome");
-                float preco = rs.getInt("preco");
+                float preco = rs.getFloat("preco");
                 String tipo = rs.getString("tipo");
-                long quantidade = rs.getLong("quantidade");
+                float quantidade = rs.getFloat("quantidade");
                 System.out.println("ID: " + id + " | Nome: " + nome + " | Preco: " + preco + " | Tipo: " + tipo + " | Quantidade: " + quantidade);
             }
         } catch (SQLException ex) {
@@ -116,9 +116,9 @@ public class BancoDeDados {
                 while (rs.next()) {
                     int id = rs.getInt("id");
                     String nome = rs.getString("nome");
-                   float preco = rs.getInt("preco");
+                    float preco = rs.getFloat("preco");
                     String tipo = rs.getString("tipo");
-                    long quantidade = rs.getLong("quantidade");
+                    float quantidade = rs.getFloat("quantidade");
                     System.out.println("ID: " + id + " | Nome: " + nome + " | Preco: " + preco + " | Tipo: " + tipo + " | Quantidade: " + quantidade);
                     encontrou = true;
                 }
@@ -149,13 +149,13 @@ public class BancoDeDados {
         }
     }
 
-    public long obterQuantidade(String nomeProduto) {
+    public float obterQuantidade(String nomeProduto) {
         String query = "SELECT quantidade FROM produtos WHERE nome = ?";
         try (PreparedStatement stmt = this.connection.prepareStatement(query)) {
             stmt.setString(1, nomeProduto);
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
-                    return rs.getLong("quantidade");
+                    return rs.getFloat("quantidade");
                 } else {
                     System.out.println("Produto não encontrado: " + nomeProduto);
                     return -1;
@@ -168,10 +168,10 @@ public class BancoDeDados {
     }
 
     //Aqui, atualiza a quantidade de produtos após a venda. Manda para o DAO e depois vai para o Service
-    public void quantidadePosVenda(String nome, long quantidadePos) {
+    public void quantidadePosVenda(String nome, float quantidadePos) {
         String query = "UPDATE produtos SET quantidade = ? WHERE nome = ?";
         try (PreparedStatement stmt = this.connection.prepareStatement(query)) {
-            stmt.setLong(1, quantidadePos);
+            stmt.setFloat(1, quantidadePos);
             stmt.setString(2, nome);
             stmt.executeUpdate(); // Faltava isso
         } catch (SQLException ex) {

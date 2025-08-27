@@ -53,7 +53,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        btn_estoque.setText("Estoque");
+        btn_estoque.setText("Estoque/Relatório");
         btn_estoque.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_estoqueActionPerformed(evt);
