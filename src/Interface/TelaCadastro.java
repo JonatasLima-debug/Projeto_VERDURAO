@@ -373,7 +373,7 @@ public class TelaCadastro extends javax.swing.JFrame {
     private void btn_salvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_salvarActionPerformed
         try{
             String nome = Campo_nomeProduto.getText();
-            int quantidade = Integer.parseInt(Campo_quantidade.getText());
+            float quantidade = Float.parseFloat(Campo_quantidade.getText());
             if(quantidade <= 0){
                 JOptionPane.showMessageDialog(rootPane, "A quantidade deve ser maior do que 0.","Quantidade inválida",2);
                 Campo_quantidade.setText("");
