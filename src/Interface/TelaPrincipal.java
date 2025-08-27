@@ -109,7 +109,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_cadastroActionPerformed
 
     private void btn_caixaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_caixaActionPerformed
-        // TODO add your handling code here:
+        Caixa cx = new Caixa();
+        cx.setVisible(true);
     }//GEN-LAST:event_btn_caixaActionPerformed
 
     private void btn_estoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_estoqueActionPerformed
