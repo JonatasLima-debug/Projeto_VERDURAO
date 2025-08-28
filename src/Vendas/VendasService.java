@@ -32,7 +32,7 @@ public class VendasService {
             return;
         }
 
-        float valorTotal = precoUnitario * quantidadeCliente / 100.0f;
+        float valorTotal = precoUnitario * quantidadeCliente;
 
         // Criar objeto Vendas
         Vendas venda = new Vendas();

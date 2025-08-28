@@ -10,6 +10,9 @@ package Interface;
  */
 import Produtos.*;
 import BD_Verdurao.*;
+import Vendas.VendasDAO;
+import Vendas.VendasService;
+
 import java.util.List;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
@@ -20,6 +23,9 @@ public class TelaCaixa extends javax.swing.JFrame {
     BancoDeDados bd;
     ProdutoDAO pd;
     ProdutoService ps;
+    BancodeDados_vendas bdv;
+    VendasService vs;
+    VendasDAO vd;
     /**
      * Creates new form Caixa
      */
@@ -34,6 +40,9 @@ public class TelaCaixa extends javax.swing.JFrame {
         bd.conectar();
         pd = new ProdutoDAO(bd);
         ps = new ProdutoService(pd);
+        bdv = new BancodeDados_vendas();
+        vd = new VendasDAO(bdv);
+        vs = new VendasService(ps,vd);
         listaCompras = (DefaultTableModel) tabela_compras.getModel();
         listaCompras.setRowCount(0);
     }
@@ -385,7 +394,7 @@ public class TelaCaixa extends javax.swing.JFrame {
 
         if (vendido) {
             // Registra no banco
-            ps.registrarVenda(nomeProduto, quantidade);
+            vs.registrarVenda(nomeProduto, quantidade);
 
             // Soma ao total
             float preco = Float.parseFloat(model.getValueAt(i, 3).toString()); // Coluna 3 = Preço por kg

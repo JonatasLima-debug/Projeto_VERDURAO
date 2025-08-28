@@ -37,7 +37,7 @@ public class ProdutoService {
         float novoEstoque = estoqueAtual - quantidadeCliente;
         dao.atualizarQuantidadePosVenda(nomeProduto, novoEstoque);
 
-        System.out.printf("Venda realizada! Produto: %s | Total a pagar: R$ %.2f | Novo estoque: %d%n",
+        System.out.printf("Venda realizada! Produto: %s | Total a pagar: R$ %.2f | Novo estoque: %s%n",
                 nomeProduto, (precoUnitario * quantidadeCliente) / 100.0, novoEstoque);
 
         return true;
@@ -84,6 +84,7 @@ public class ProdutoService {
     }
 
     public void registrarVenda(String nomeProduto, float l) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+         // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        
     }
 }

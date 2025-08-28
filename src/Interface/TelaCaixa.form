@@ -247,7 +247,7 @@
                       <Component id="btn_adicionarLista" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btn_removerLista" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="separate" pref="29" max="32767" attributes="0"/>
+                  <EmptySpace type="separate" pref="20" max="32767" attributes="0"/>
                   <Component id="label_total" min="-2" pref="43" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
