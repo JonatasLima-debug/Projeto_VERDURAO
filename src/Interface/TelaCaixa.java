@@ -13,25 +13,34 @@ import BD_Verdurao.*;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-public class Caixa extends javax.swing.JFrame {
-    
+public class TelaCaixa extends javax.swing.JFrame {
+    DefaultTableModel listaCompras;
     BancoDeDados bd;
     ProdutoDAO pd;
     ProdutoService ps;
     /**
      * Creates new form Caixa
      */
-    public Caixa() {
-        setContentPane(new FundoCaixa());
+    public TelaCaixa() {
+        //setContentPane(new FundoCaixa());
 
-        initComponents();
-        
         initComponents();
         setLocationRelativeTo(null);
         bd = new BancoDeDados();
         bd.conectar();
         pd = new ProdutoDAO(bd);
         ps = new ProdutoService(pd);
+        listaCompras = (DefaultTableModel) tabela_compras.getModel();
+        listaCompras.setRowCount(0);
+    }
+    
+    public void TabelaComprasBD(int id, String nome,float preco, String tipo, float quantidade){
+         try{
+            listaCompras.addRow(new Object[]{id,nome,tipo,preco,quantidade});
+          }
+        catch(Exception erro){
+            System.out.println(erro);
+        }
     }
 
     /**
@@ -77,7 +86,7 @@ public class Caixa extends javax.swing.JFrame {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.Integer.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Float.class, java.lang.Float.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false
@@ -181,7 +190,7 @@ public class Caixa extends javax.swing.JFrame {
                         .addGap(47, 47, 47)
                         .addComponent(btn_removerLista))
                     .addComponent(label_total, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(10, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -202,7 +211,7 @@ public class Caixa extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_adicionarLista)
                     .addComponent(btn_removerLista))
-                .addGap(18, 25, Short.MAX_VALUE)
+                .addGap(18, 34, Short.MAX_VALUE)
                 .addComponent(label_total, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -234,7 +243,7 @@ public class Caixa extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(225, 225, 225))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 479, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 509, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(vender, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -266,6 +275,29 @@ public class Caixa extends javax.swing.JFrame {
 
     private void btn_adicionarListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_adicionarListaActionPerformed
         // TODO add your handling code here:
+        String nome = campo_nomeProduto.getText();
+        if(pd.produtoExiste(nome)){
+            float qtd = Float.parseFloat(campo_quantidade.getText());
+            float qtdTotal = pd.obterQuantidadePorNome(nome);
+
+            if(qtd<=qtdTotal){
+                String tipo = (String) ComboBox_tipo.getSelectedItem();
+                int id = pd.obterIdPorNome(nome);
+                float preco = pd.obterPrecoPorNome(nome);
+                TabelaComprasBD(id,nome.toUpperCase(), preco, tipo, qtd);
+            }
+            else{
+                JOptionPane.showMessageDialog(rootPane, "Quantidade inexistente!\nQuantidade de '' "+nome+"'' em estoque: "+qtdTotal);
+                campo_quantidade.setText("");
+            }
+        }
+        
+        else{
+            JOptionPane.showMessageDialog(rootPane, "Esse produto não está cadastrado");
+            campo_nomeProduto.setText("");
+        }
+        
+        
     }//GEN-LAST:event_btn_adicionarListaActionPerformed
 
     private void btn_removerListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_removerListaActionPerformed
@@ -335,20 +367,21 @@ public class Caixa extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Caixa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaCaixa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Caixa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaCaixa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Caixa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaCaixa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Caixa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaCaixa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Caixa().setVisible(true);
+                new TelaCaixa().setVisible(true);
             }
         });
     }

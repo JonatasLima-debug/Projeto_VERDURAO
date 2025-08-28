@@ -26,7 +26,7 @@ public class TelaCadastro extends javax.swing.JFrame {
      */
     public TelaCadastro() {
 
-        setContentPane(new FundoCadastro());
+        //setContentPane(new FundoCadastro());
 
         initComponents();
         setLocationRelativeTo(null);
@@ -43,7 +43,6 @@ public class TelaCadastro extends javax.swing.JFrame {
         DefaultTableModel tabela = new DefaultTableModel(new Object[] {"ID", "Nome do Produto","Tipo","Preço por kg","Quantidade" },0);
         List<Produtos> todosProdutos = ps.dao.buscarTodos();
         
-        
         try{
           for(Produtos p : todosProdutos ){
             tabela.addRow(new Object[]{p.getId(),p.getNome(),p.getTipo(),p.getPreco(),p.getQuantidade()});
@@ -54,6 +53,7 @@ public class TelaCadastro extends javax.swing.JFrame {
         }
         tabela_produtos.setModel(tabela);
     }
+    
     public void manipularInterfaceCadastro(){
         switch(modoCadastro){
             case("Navegar"):
@@ -137,7 +137,7 @@ public class TelaCadastro extends javax.swing.JFrame {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.Integer.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Float.class, java.lang.Float.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false

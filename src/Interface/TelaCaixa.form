@@ -42,7 +42,7 @@
               <EmptySpace min="-2" pref="225" max="-2" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
-              <Component id="jPanel1" pref="479" max="32767" attributes="0"/>
+              <Component id="jPanel1" pref="509" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="vender" min="-2" pref="134" max="-2" attributes="0"/>
@@ -114,9 +114,38 @@
                     <Column editable="false" title="ID" type="java.lang.Integer"/>
                     <Column editable="false" title="Nome do Produto" type="java.lang.String"/>
                     <Column editable="false" title="Tipo" type="java.lang.String"/>
-                    <Column editable="false" title="Pre&#xe7;o por kg" type="java.lang.Double"/>
-                    <Column editable="false" title="Quantidade" type="java.lang.Integer"/>
+                    <Column editable="false" title="Pre&#xe7;o por kg" type="java.lang.Float"/>
+                    <Column editable="false" title="Quantidade" type="java.lang.Float"/>
                   </Table>
+                </Property>
+                <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                  <TableColumnModel selectionModel="0">
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                  </TableColumnModel>
                 </Property>
                 <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
                   <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
@@ -172,7 +201,7 @@
                       </Group>
                       <Component id="label_total" alignment="0" pref="0" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="12" max="32767" attributes="0"/>
+                  <EmptySpace pref="10" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -199,7 +228,7 @@
                       <Component id="btn_adicionarLista" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btn_removerLista" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="separate" pref="25" max="32767" attributes="0"/>
+                  <EmptySpace type="separate" pref="34" max="32767" attributes="0"/>
                   <Component id="label_total" min="-2" pref="43" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>

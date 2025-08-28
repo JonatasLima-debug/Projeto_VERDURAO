@@ -16,7 +16,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
      * Creates new form TelaPrincipal
      */
     public TelaPrincipal() {
-        setContentPane(new FundoPrincipal());
+        //setContentPane(new FundoPrincipal());
        initComponents(); // inicializa os botões e layout
         setLocationRelativeTo(null);
     }
@@ -116,7 +116,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_cadastroActionPerformed
 
     private void btn_caixaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_caixaActionPerformed
-        Caixa cx = new Caixa();
+        TelaCaixa cx = new TelaCaixa();
         cx.setVisible(true);
     }//GEN-LAST:event_btn_caixaActionPerformed
 
