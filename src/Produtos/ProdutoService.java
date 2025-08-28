@@ -82,4 +82,8 @@ public class ProdutoService {
     public void ExcluirProduto(int id) {
         if (dao.existeID(id)) dao.deletar(id);
     }
+
+    public void registrarVenda(String nomeProduto, float l) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

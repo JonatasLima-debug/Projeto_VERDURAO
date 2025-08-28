@@ -10,6 +10,8 @@ package Interface;
  */
 import Produtos.*;
 import BD_Verdurao.*;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 public class Caixa extends javax.swing.JFrame {
     
@@ -53,6 +55,7 @@ public class Caixa extends javax.swing.JFrame {
         campo_nomeProduto = new javax.swing.JTextField();
         label_realizarVenda = new javax.swing.JLabel();
         btn_voltar = new javax.swing.JButton();
+        vender = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -174,7 +177,7 @@ public class Caixa extends javax.swing.JFrame {
                         .addGap(47, 47, 47)
                         .addComponent(btn_removerLista))
                     .addComponent(label_total, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addContainerGap(10, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -195,7 +198,7 @@ public class Caixa extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_adicionarLista)
                     .addComponent(btn_removerLista))
-                .addGap(18, 34, Short.MAX_VALUE)
+                .addGap(18, 25, Short.MAX_VALUE)
                 .addComponent(label_total, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -206,6 +209,13 @@ public class Caixa extends javax.swing.JFrame {
         btn_voltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_voltarActionPerformed(evt);
+            }
+        });
+
+        vender.setText("Finalizar Venda");
+        vender.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                venderActionPerformed(evt);
             }
         });
 
@@ -226,7 +236,10 @@ public class Caixa extends javax.swing.JFrame {
                         .addGap(354, 354, 354))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(btn_voltar)
-                        .addGap(356, 356, 356))))
+                        .addGap(356, 356, 356))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(vender, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(321, 321, 321))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -237,7 +250,9 @@ public class Caixa extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addComponent(vender)
+                .addGap(18, 18, 18)
                 .addComponent(btn_voltar)
                 .addGap(41, 41, 41))
         );
@@ -264,6 +279,44 @@ public class Caixa extends javax.swing.JFrame {
     private void campo_nomeProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campo_nomeProdutoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_campo_nomeProdutoActionPerformed
+
+    private void venderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_venderActionPerformed
+        // TODO add your handling code here:
+         DefaultTableModel model = (DefaultTableModel) tabela_compras.getModel();
+    int rowCount = model.getRowCount();
+
+    if (rowCount == 0) {
+        JOptionPane.showMessageDialog(this, "Nenhum produto na lista para vender.");
+        return;
+    }
+
+    float totalVenda = 0;
+
+    for (int i = 0; i < rowCount; i++) {
+        String nomeProduto = (String) model.getValueAt(i, 1); // Coluna 1 = Nome
+        float quantidade = Float.parseFloat(model.getValueAt(i, 4).toString()); // Coluna 4 = Quantidade
+
+        // Atualiza o estoque
+        boolean vendido = ps.vender(nomeProduto, quantidade);
+
+        if (vendido) {
+            // Registra no banco
+            ps.registrarVenda(nomeProduto, quantidade);
+
+            // Soma ao total
+            float preco = Float.parseFloat(model.getValueAt(i, 3).toString()); // Coluna 3 = Preço por kg
+            totalVenda += preco * quantidade;
+        } else {
+            JOptionPane.showMessageDialog(this, "Erro ao vender produto: " + nomeProduto);
+        }
+    }
+
+    // Atualiza label do total
+    label_total.setText("TOTAL: R$ " + String.format("%.2f", totalVenda));
+
+    JOptionPane.showMessageDialog(this, "Venda registrada com sucesso!");
+    model.setRowCount(0); // Limpa a tabela depois da venda
+    }//GEN-LAST:event_venderActionPerformed
 
     /**
      * @param args the command line arguments
@@ -317,5 +370,6 @@ public class Caixa extends javax.swing.JFrame {
     private javax.swing.JLabel label_tipo;
     private javax.swing.JLabel label_total;
     private javax.swing.JTable tabela_compras;
+    private javax.swing.JButton vender;
     // End of variables declaration//GEN-END:variables
 }
