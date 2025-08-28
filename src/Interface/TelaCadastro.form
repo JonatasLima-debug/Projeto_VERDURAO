@@ -46,6 +46,9 @@
       <SubComponents>
         <Component class="javax.swing.JTable" name="tabela_produtos">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Trebuchet MS" size="12" style="0"/>
+            </Property>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="5" rowCount="4">
                 <Column editable="false" title="ID" type="java.lang.Integer"/>
@@ -96,6 +99,9 @@
     </Container>
     <Component class="javax.swing.JButton" name="btn_editar">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Trebuchet MS" size="18" style="0"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Editar"/>
       </Properties>
       <Events>
@@ -103,12 +109,15 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="670" y="420" width="-1" height="-1"/>
+          <AbsoluteConstraints x="640" y="420" width="-1" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>
     <Component class="javax.swing.JButton" name="btn_excluir">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Trebuchet MS" size="18" style="0"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Excluir"/>
       </Properties>
       <Events>
@@ -116,12 +125,15 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="780" y="420" width="-1" height="-1"/>
+          <AbsoluteConstraints x="770" y="420" width="-1" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>
     <Component class="javax.swing.JButton" name="btn_novo">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Trebuchet MS" size="18" style="0"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Novo"/>
       </Properties>
       <Events>
@@ -129,7 +141,7 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="550" y="420" width="-1" height="-1"/>
+          <AbsoluteConstraints x="520" y="420" width="-1" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -141,6 +153,7 @@
               <Border PropertyName="innerBorder" info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                 <LineBorder/>
               </Border>
+              <Font PropertyName="font" name="Trebuchet MS" size="12" style="0"/>
             </TitledBorder>
           </Border>
         </Property>
@@ -150,7 +163,7 @@
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="460" y="110" width="-1" height="-1"/>
+          <AbsoluteConstraints x="460" y="110" width="450" height="-1"/>
         </Constraint>
       </Constraints>
 
@@ -179,7 +192,7 @@
                       <Component id="Campo_quantidade" max="32767" attributes="0"/>
                       <Component id="Campo_preco" alignment="0" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="29" max="32767" attributes="0"/>
+                  <EmptySpace pref="10" max="32767" attributes="0"/>
               </Group>
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="103" max="-2" attributes="0"/>
@@ -226,6 +239,9 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="label_nomeProduto">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Trebuchet MS" size="14" style="0"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Nome do Produto:"/>
           </Properties>
         </Component>
@@ -233,11 +249,17 @@
         </Component>
         <Component class="javax.swing.JLabel" name="label_tipo">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Trebuchet MS" size="14" style="0"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Tipo:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JComboBox" name="ComboBox_tipo">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Trebuchet MS" size="14" style="0"/>
+            </Property>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="3">
                 <StringItem index="0" value="Verdura"/>
@@ -255,6 +277,9 @@
         </Component>
         <Component class="javax.swing.JLabel" name="label_quantidade">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Trebuchet MS" size="14" style="0"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Quantidade (em kg) :"/>
           </Properties>
         </Component>
@@ -262,6 +287,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="btn_salvar">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Trebuchet MS" size="18" style="0"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Salvar"/>
           </Properties>
           <Events>
@@ -270,6 +298,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="btn_cancelar">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Trebuchet MS" size="18" style="0"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Cancelar"/>
           </Properties>
           <Events>
@@ -278,6 +309,9 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Trebuchet MS" size="14" style="0"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Pre&#xe7;o por kg:"/>
           </Properties>
         </Component>
@@ -290,6 +324,15 @@
     </Container>
     <Component class="javax.swing.JButton" name="btn_voltar">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="99" green="ff" red="99" type="rgb"/>
+        </Property>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Trebuchet MS" size="18" style="0"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="0" red="0" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Voltar"/>
       </Properties>
       <Events>
@@ -297,7 +340,7 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="670" y="560" width="-1" height="-1"/>
+          <AbsoluteConstraints x="410" y="540" width="-1" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>

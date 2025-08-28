@@ -26,6 +26,8 @@ public class TelaCaixa extends javax.swing.JFrame {
 
         initComponents();
         setLocationRelativeTo(null);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        setTitle("Verdurão UFCat - Caixa");
         bd = new BancoDeDados();
         bd.conectar();
         pd = new ProdutoDAO(bd);
@@ -108,7 +110,7 @@ public class TelaCaixa extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 467, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 508, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -134,6 +136,7 @@ public class TelaCaixa extends javax.swing.JFrame {
 
         label_quantidade.setText("Quantidade:");
 
+        btn_adicionarLista.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
         btn_adicionarLista.setText("Adicionar à Lista");
         btn_adicionarLista.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -141,6 +144,7 @@ public class TelaCaixa extends javax.swing.JFrame {
             }
         });
 
+        btn_removerLista.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
         btn_removerLista.setText("Remover da Lista");
         btn_removerLista.setToolTipText("");
         btn_removerLista.addActionListener(new java.awt.event.ActionListener() {
@@ -149,7 +153,7 @@ public class TelaCaixa extends javax.swing.JFrame {
             }
         });
 
-        label_total.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        label_total.setFont(new java.awt.Font("Trebuchet MS", 0, 24)); // NOI18N
         label_total.setText(" TOTAL: R$//setText depois para alterar ");
         label_total.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
@@ -165,7 +169,7 @@ public class TelaCaixa extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -185,12 +189,12 @@ public class TelaCaixa extends javax.swing.JFrame {
                                 .addGap(232, 232, 232))
                             .addComponent(campo_nomeProduto)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(55, 55, 55)
+                        .addGap(24, 24, 24)
                         .addComponent(btn_adicionarLista)
-                        .addGap(47, 47, 47)
+                        .addGap(49, 49, 49)
                         .addComponent(btn_removerLista))
-                    .addComponent(label_total, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addContainerGap(10, Short.MAX_VALUE))
+                    .addComponent(label_total, javax.swing.GroupLayout.PREFERRED_SIZE, 438, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -211,11 +215,14 @@ public class TelaCaixa extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_adicionarLista)
                     .addComponent(btn_removerLista))
-                .addGap(18, 34, Short.MAX_VALUE)
+                .addGap(18, 18, Short.MAX_VALUE)
                 .addComponent(label_total, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
+        btn_voltar.setBackground(new java.awt.Color(153, 255, 153));
+        btn_voltar.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
+        btn_voltar.setForeground(new java.awt.Color(0, 0, 0));
         btn_voltar.setText("Voltar");
         btn_voltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -223,6 +230,7 @@ public class TelaCaixa extends javax.swing.JFrame {
             }
         });
 
+        vender.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
         vender.setText("Finalizar Venda");
         vender.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -235,20 +243,21 @@ public class TelaCaixa extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 527, Short.MAX_VALUE)
-                .addComponent(btn_voltar)
-                .addGap(356, 356, 356))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(225, 225, 225))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 509, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 520, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(vender, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 418, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 418, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(vender, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(22, 22, 22))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(225, 225, 225))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btn_voltar)
+                        .addGap(426, 426, 426))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -261,9 +270,9 @@ public class TelaCaixa extends javax.swing.JFrame {
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(vender)
-                .addGap(18, 18, 18)
+                .addGap(45, 45, 45)
                 .addComponent(btn_voltar)
-                .addGap(41, 41, 41))
+                .addGap(14, 14, 14))
         );
 
         pack();

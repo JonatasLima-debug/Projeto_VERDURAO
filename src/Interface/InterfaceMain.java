@@ -35,9 +35,9 @@ public class InterfaceMain extends JFrame { // 🔹 aqui estava faltando extends
         vendasService = new VendasService(produtoService, vendasDAO);
 
         // Configurações da janela
-        setTitle("Sistema Verdurao");
+        setTitle("Verdurão UFCat - Estoque");
         setSize(800, 600);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
 
         // Abas

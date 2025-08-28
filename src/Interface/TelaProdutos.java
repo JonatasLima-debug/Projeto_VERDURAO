@@ -25,7 +25,7 @@ public class TelaProdutos extends JFrame {
         setTitle("Lista de Produtos");
         setSize(600, 400);
         setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(new BorderLayout());
     }
 

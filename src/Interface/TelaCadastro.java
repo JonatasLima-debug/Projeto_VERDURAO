@@ -30,6 +30,8 @@ public class TelaCadastro extends javax.swing.JFrame {
 
         initComponents();
         setLocationRelativeTo(null);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        setTitle("Verdurão UFCat - Área de Cadastro");
         bd = new BancoDeDados();
         bd.conectar();
         pd = new ProdutoDAO(bd);
@@ -125,6 +127,7 @@ public class TelaCadastro extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         getContentPane().add(label_cadastroProdutos, new org.netbeans.lib.awtextra.AbsoluteConstraints(375, 14, -1, -1));
 
+        tabela_produtos.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         tabela_produtos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
@@ -160,37 +163,43 @@ public class TelaCadastro extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 434, 410));
 
+        btn_editar.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
         btn_editar.setText("Editar");
         btn_editar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_editarActionPerformed(evt);
             }
         });
-        getContentPane().add(btn_editar, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 420, -1, -1));
+        getContentPane().add(btn_editar, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 420, -1, -1));
 
+        btn_excluir.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
         btn_excluir.setText("Excluir");
         btn_excluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_excluirActionPerformed(evt);
             }
         });
-        getContentPane().add(btn_excluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 420, -1, -1));
+        getContentPane().add(btn_excluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 420, -1, -1));
 
+        btn_novo.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
         btn_novo.setText("Novo");
         btn_novo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_novoActionPerformed(evt);
             }
         });
-        getContentPane().add(btn_novo, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 420, -1, -1));
+        getContentPane().add(btn_novo, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 420, -1, -1));
 
-        panel_cadastrarProduto.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Produtos"));
+        panel_cadastrarProduto.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Produtos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Trebuchet MS", 0, 12))); // NOI18N
         panel_cadastrarProduto.setForeground(new java.awt.Color(0, 0, 0));
 
+        label_nomeProduto.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         label_nomeProduto.setText("Nome do Produto:");
 
+        label_tipo.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         label_tipo.setText("Tipo:");
 
+        ComboBox_tipo.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         ComboBox_tipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Verdura", "Fruta", "Legume" }));
         ComboBox_tipo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -198,8 +207,10 @@ public class TelaCadastro extends javax.swing.JFrame {
             }
         });
 
+        label_quantidade.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         label_quantidade.setText("Quantidade (em kg) :");
 
+        btn_salvar.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
         btn_salvar.setText("Salvar");
         btn_salvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -207,6 +218,7 @@ public class TelaCadastro extends javax.swing.JFrame {
             }
         });
 
+        btn_cancelar.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
         btn_cancelar.setText("Cancelar");
         btn_cancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -214,6 +226,7 @@ public class TelaCadastro extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         jLabel1.setText("Preço por kg:");
 
         Campo_preco.addActionListener(new java.awt.event.ActionListener() {
@@ -243,7 +256,7 @@ public class TelaCadastro extends javax.swing.JFrame {
                     .addComponent(ComboBox_tipo, 0, 264, Short.MAX_VALUE)
                     .addComponent(Campo_quantidade)
                     .addComponent(Campo_preco))
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap(10, Short.MAX_VALUE))
             .addGroup(panel_cadastrarProdutoLayout.createSequentialGroup()
                 .addGap(103, 103, 103)
                 .addComponent(btn_salvar)
@@ -277,15 +290,18 @@ public class TelaCadastro extends javax.swing.JFrame {
                 .addGap(17, 17, 17))
         );
 
-        getContentPane().add(panel_cadastrarProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 110, -1, -1));
+        getContentPane().add(panel_cadastrarProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 110, 450, -1));
 
+        btn_voltar.setBackground(new java.awt.Color(153, 255, 153));
+        btn_voltar.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
+        btn_voltar.setForeground(new java.awt.Color(0, 0, 0));
         btn_voltar.setText("Voltar");
         btn_voltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_voltarActionPerformed(evt);
             }
         });
-        getContentPane().add(btn_voltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 560, -1, -1));
+        getContentPane().add(btn_voltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 540, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
