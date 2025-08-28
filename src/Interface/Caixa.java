@@ -22,7 +22,7 @@ public class Caixa extends javax.swing.JFrame {
      * Creates new form Caixa
      */
     public Caixa() {
-        setContentPane(new FundoPanel());
+        setContentPane(new FundoCaixa());
 
         initComponents();
         

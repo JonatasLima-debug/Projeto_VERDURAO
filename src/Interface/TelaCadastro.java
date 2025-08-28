@@ -17,7 +17,7 @@ import javax.swing.table.DefaultTableModel;
 
 public class TelaCadastro extends javax.swing.JFrame {
     String modoCadastro;
-    
+
     BancoDeDados bd;
     ProdutoDAO pd;
     ProdutoService ps;
@@ -25,6 +25,9 @@ public class TelaCadastro extends javax.swing.JFrame {
      * Creates new form TelaCadastro
      */
     public TelaCadastro() {
+
+        setContentPane(new FundoCadastro());
+
         initComponents();
         setLocationRelativeTo(null);
         bd = new BancoDeDados();
@@ -117,7 +120,6 @@ public class TelaCadastro extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         Campo_preco = new javax.swing.JTextField();
         btn_voltar = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -284,9 +286,6 @@ public class TelaCadastro extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_voltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 560, -1, -1));
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens_projetos/Produtos.png"))); // NOI18N
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 920, 700));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -471,7 +470,6 @@ public class TelaCadastro extends javax.swing.JFrame {
     private javax.swing.JButton btn_salvar;
     private javax.swing.JButton btn_voltar;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel label_cadastroProdutos;
     private javax.swing.JLabel label_nomeProduto;

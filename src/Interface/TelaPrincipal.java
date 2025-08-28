@@ -16,7 +16,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
      * Creates new form TelaPrincipal
      */
     public TelaPrincipal() {
-        initComponents();
+        setContentPane(new FundoPrincipal());
+       initComponents(); // inicializa os botões e layout
         setLocationRelativeTo(null);
     }
 
@@ -33,11 +34,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
         btn_caixa = new javax.swing.JButton();
         btn_estoque = new javax.swing.JButton();
         btn_sair = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btn_cadastro.setBackground(new java.awt.Color(255, 255, 255));
         btn_cadastro.setForeground(new java.awt.Color(0, 0, 0));
@@ -47,7 +45,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 btn_cadastroActionPerformed(evt);
             }
         });
-        getContentPane().add(btn_cadastro, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 120, 150, -1));
 
         btn_caixa.setBackground(new java.awt.Color(255, 255, 255));
         btn_caixa.setForeground(new java.awt.Color(0, 0, 0));
@@ -57,7 +54,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 btn_caixaActionPerformed(evt);
             }
         });
-        getContentPane().add(btn_caixa, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 170, 126, -1));
 
         btn_estoque.setBackground(new java.awt.Color(255, 255, 255));
         btn_estoque.setForeground(new java.awt.Color(0, 0, 0));
@@ -67,7 +63,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 btn_estoqueActionPerformed(evt);
             }
         });
-        getContentPane().add(btn_estoque, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 220, 126, -1));
 
         btn_sair.setBackground(new java.awt.Color(255, 255, 255));
         btn_sair.setForeground(new java.awt.Color(0, 0, 0));
@@ -77,23 +72,40 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 btn_sairActionPerformed(evt);
             }
         });
-        getContentPane().add(btn_sair, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 270, 126, -1));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens_projetos/Tela principal.png"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 640, 400));
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(240, 240, 240)
+                        .addComponent(btn_cadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(250, 250, 250)
+                        .addComponent(btn_caixa, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(250, 250, 250)
+                        .addComponent(btn_estoque, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(250, 250, 250)
+                        .addComponent(btn_sair, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(290, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(130, 130, 130)
+                .addComponent(btn_cadastro)
+                .addGap(16, 16, 16)
+                .addComponent(btn_caixa)
+                .addGap(26, 26, 26)
+                .addComponent(btn_estoque)
+                .addGap(26, 26, 26)
+                .addComponent(btn_sair)
+                .addContainerGap(126, Short.MAX_VALUE))
         );
-
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 100, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -159,7 +171,5 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btn_caixa;
     private javax.swing.JButton btn_estoque;
     private javax.swing.JButton btn_sair;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

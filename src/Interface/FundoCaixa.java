@@ -9,10 +9,10 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
-public class FundoPanel extends JPanel {
+public class FundoCaixa extends JPanel {
     private Image imagem;
 
-    public FundoPanel() {
+    public FundoCaixa() {
         // carrega a imagem do resources
         imagem = new ImageIcon(getClass().getResource("/imagens_projetos/Caixa.png")).getImage();
     }

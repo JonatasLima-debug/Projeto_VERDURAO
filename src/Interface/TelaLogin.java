@@ -15,6 +15,8 @@ public class TelaLogin extends javax.swing.JFrame {
      * Creates new form TelaLogin
      */
     public TelaLogin() {
+        setContentPane(new FundoLogin());
+
         initComponents();
         setLocationRelativeTo(null);
         getRootPane().setDefaultButton(btn_entrar);
@@ -34,9 +36,7 @@ public class TelaLogin extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         btn_entrar = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
         campo_senha = new javax.swing.JPasswordField();
-        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -70,14 +70,8 @@ public class TelaLogin extends javax.swing.JFrame {
         });
         getContentPane().add(btn_entrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 240, -1, -1));
 
-        jLabel3.setText("  ");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 30, 50, -1));
-
         campo_senha.setBackground(new java.awt.Color(255, 255, 255));
         getContentPane().add(campo_senha, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 170, 239, -1));
-
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens_projetos/Tela login.png"))); // NOI18N
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 390, 300));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -144,8 +138,6 @@ public class TelaLogin extends javax.swing.JFrame {
     private javax.swing.JTextField campo_usuario;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel label_usuario;
     // End of variables declaration//GEN-END:variables
 }
