@@ -36,20 +36,31 @@ public class TelaLogin extends javax.swing.JFrame {
         btn_entrar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         campo_senha = new javax.swing.JPasswordField();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        label_usuario.setForeground(new java.awt.Color(255, 255, 255));
         label_usuario.setText("Usuário: ");
+        getContentPane().add(label_usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 130, -1, -1));
 
+        campo_usuario.setBackground(new java.awt.Color(255, 255, 255));
+        campo_usuario.setForeground(new java.awt.Color(0, 0, 0));
         campo_usuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 campo_usuarioActionPerformed(evt);
             }
         });
+        getContentPane().add(campo_usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 130, 240, -1));
 
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Senha:");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, -1, -1));
 
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Bem Vindo(a)");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 70, 127, 35));
 
         btn_entrar.setText("Entrar");
         btn_entrar.addActionListener(new java.awt.event.ActionListener() {
@@ -57,59 +68,16 @@ public class TelaLogin extends javax.swing.JFrame {
                 btn_entrarActionPerformed(evt);
             }
         });
+        getContentPane().add(btn_entrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 240, -1, -1));
 
-        jLabel3.setText("Verdurão  ");
+        jLabel3.setText("  ");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 30, 50, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(label_usuario)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(campo_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(88, 88, 88)
-                                        .addComponent(btn_entrar))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(18, 18, 18)
-                                        .addComponent(campo_senha))))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(167, 167, 167)
-                        .addComponent(jLabel3)))
-                .addContainerGap(84, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(117, 117, 117))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(jLabel3)
-                .addGap(29, 29, 29)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(label_usuario)
-                    .addComponent(campo_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(33, 33, 33)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(campo_senha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
-                .addComponent(btn_entrar)
-                .addGap(35, 35, 35))
-        );
+        campo_senha.setBackground(new java.awt.Color(255, 255, 255));
+        getContentPane().add(campo_senha, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 170, 239, -1));
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens_projetos/Tela login.png"))); // NOI18N
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 390, 300));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -177,6 +145,7 @@ public class TelaLogin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel label_usuario;
     // End of variables declaration//GEN-END:variables
 }

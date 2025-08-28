@@ -31,28 +31,24 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <Component id="jPanel1" pref="479" max="32767" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="jPanel2" min="-2" pref="418" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace min="0" pref="527" max="32767" attributes="0"/>
+              <Component id="btn_voltar" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="356" max="-2" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="jLabel1" min="-2" pref="41" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="225" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <Component id="jPanel1" pref="479" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <Component id="label_realizarVenda" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="354" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <Component id="btn_voltar" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="356" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <Component id="vender" min="-2" pref="101" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="321" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="vender" min="-2" pref="134" max="-2" attributes="0"/>
+                  <Component id="jPanel2" min="-2" pref="418" max="-2" attributes="0"/>
               </Group>
+              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -60,13 +56,13 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-              <Component id="label_realizarVenda" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jPanel1" min="-2" pref="290" max="-2" attributes="0"/>
                   <Component id="jPanel2" min="-2" pref="261" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="42" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
               <Component id="vender" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="btn_voltar" min="-2" max="-2" attributes="0"/>
@@ -287,11 +283,6 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JLabel" name="label_realizarVenda">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Realizar uma Venda"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JButton" name="btn_voltar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Voltar"/>
@@ -307,6 +298,8 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="venderActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel1">
     </Component>
   </SubComponents>
 </Form>

@@ -29,76 +29,71 @@ public class TelaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        label_titulo = new javax.swing.JLabel();
         btn_cadastro = new javax.swing.JButton();
         btn_caixa = new javax.swing.JButton();
         btn_estoque = new javax.swing.JButton();
         btn_sair = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        label_titulo.setText("Verdurão");
-
+        btn_cadastro.setBackground(new java.awt.Color(255, 255, 255));
+        btn_cadastro.setForeground(new java.awt.Color(0, 0, 0));
         btn_cadastro.setText("Cadastro de Produtos");
         btn_cadastro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_cadastroActionPerformed(evt);
             }
         });
+        getContentPane().add(btn_cadastro, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 120, 150, -1));
 
+        btn_caixa.setBackground(new java.awt.Color(255, 255, 255));
+        btn_caixa.setForeground(new java.awt.Color(0, 0, 0));
         btn_caixa.setText("Caixa");
         btn_caixa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_caixaActionPerformed(evt);
             }
         });
+        getContentPane().add(btn_caixa, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 170, 126, -1));
 
+        btn_estoque.setBackground(new java.awt.Color(255, 255, 255));
+        btn_estoque.setForeground(new java.awt.Color(0, 0, 0));
         btn_estoque.setText("Estoque/Relatório");
         btn_estoque.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_estoqueActionPerformed(evt);
             }
         });
+        getContentPane().add(btn_estoque, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 220, 126, -1));
 
+        btn_sair.setBackground(new java.awt.Color(255, 255, 255));
+        btn_sair.setForeground(new java.awt.Color(0, 0, 0));
         btn_sair.setText("Sair");
         btn_sair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_sairActionPerformed(evt);
             }
         });
+        getContentPane().add(btn_sair, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 270, 126, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(262, 262, 262)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btn_caixa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn_cadastro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn_estoque, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn_sair, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(259, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(label_titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(300, 300, 300))
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens_projetos/Tela principal.png"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 640, 400));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(43, 43, 43)
-                .addComponent(label_titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(83, 83, 83)
-                .addComponent(btn_cadastro)
-                .addGap(18, 18, 18)
-                .addComponent(btn_caixa)
-                .addGap(18, 18, 18)
-                .addComponent(btn_estoque)
-                .addGap(18, 18, 18)
-                .addComponent(btn_sair)
-                .addContainerGap(82, Short.MAX_VALUE))
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
         );
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 100, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -164,6 +159,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btn_caixa;
     private javax.swing.JButton btn_estoque;
     private javax.swing.JButton btn_sair;
-    private javax.swing.JLabel label_titulo;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

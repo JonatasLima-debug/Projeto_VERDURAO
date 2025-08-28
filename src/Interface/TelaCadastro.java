@@ -117,10 +117,11 @@ public class TelaCadastro extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         Campo_preco = new javax.swing.JTextField();
         btn_voltar = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        label_cadastroProdutos.setText("Cadastro de Produtos");
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().add(label_cadastroProdutos, new org.netbeans.lib.awtextra.AbsoluteConstraints(375, 14, -1, -1));
 
         tabela_produtos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -155,12 +156,15 @@ public class TelaCadastro extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tabela_produtos);
 
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 434, 410));
+
         btn_editar.setText("Editar");
         btn_editar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_editarActionPerformed(evt);
             }
         });
+        getContentPane().add(btn_editar, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 420, -1, -1));
 
         btn_excluir.setText("Excluir");
         btn_excluir.addActionListener(new java.awt.event.ActionListener() {
@@ -168,6 +172,7 @@ public class TelaCadastro extends javax.swing.JFrame {
                 btn_excluirActionPerformed(evt);
             }
         });
+        getContentPane().add(btn_excluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 420, -1, -1));
 
         btn_novo.setText("Novo");
         btn_novo.addActionListener(new java.awt.event.ActionListener() {
@@ -175,8 +180,10 @@ public class TelaCadastro extends javax.swing.JFrame {
                 btn_novoActionPerformed(evt);
             }
         });
+        getContentPane().add(btn_novo, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 420, -1, -1));
 
         panel_cadastrarProduto.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Produtos"));
+        panel_cadastrarProduto.setForeground(new java.awt.Color(0, 0, 0));
 
         label_nomeProduto.setText("Nome do Produto:");
 
@@ -268,63 +275,18 @@ public class TelaCadastro extends javax.swing.JFrame {
                 .addGap(17, 17, 17))
         );
 
+        getContentPane().add(panel_cadastrarProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 110, -1, -1));
+
         btn_voltar.setText("Voltar");
         btn_voltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_voltarActionPerformed(evt);
             }
         });
+        getContentPane().add(btn_voltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 560, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 434, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(panel_cadastrarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(45, 45, 45)
-                                .addComponent(btn_novo)
-                                .addGap(86, 86, 86)
-                                .addComponent(btn_editar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btn_excluir)
-                                .addGap(17, 17, 17))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(375, 375, 375)
-                        .addComponent(label_cadastroProdutos))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(402, 402, 402)
-                        .addComponent(btn_voltar)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(label_cadastroProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 457, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(124, 124, 124)
-                        .addComponent(panel_cadastrarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btn_novo)
-                            .addComponent(btn_editar)
-                            .addComponent(btn_excluir))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addGap(65, 65, 65)
-                .addComponent(btn_voltar)
-                .addGap(55, 55, 55))
-        );
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens_projetos/Produtos.png"))); // NOI18N
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 920, 700));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -509,6 +471,7 @@ public class TelaCadastro extends javax.swing.JFrame {
     private javax.swing.JButton btn_salvar;
     private javax.swing.JButton btn_voltar;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel label_cadastroProdutos;
     private javax.swing.JLabel label_nomeProduto;

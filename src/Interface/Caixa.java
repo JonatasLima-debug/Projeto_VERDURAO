@@ -22,6 +22,10 @@ public class Caixa extends javax.swing.JFrame {
      * Creates new form Caixa
      */
     public Caixa() {
+        setContentPane(new FundoPanel());
+
+        initComponents();
+        
         initComponents();
         setLocationRelativeTo(null);
         bd = new BancoDeDados();
@@ -53,9 +57,9 @@ public class Caixa extends javax.swing.JFrame {
         btn_removerLista = new javax.swing.JButton();
         label_total = new javax.swing.JLabel();
         campo_nomeProduto = new javax.swing.JTextField();
-        label_realizarVenda = new javax.swing.JLabel();
         btn_voltar = new javax.swing.JButton();
         vender = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -203,8 +207,6 @@ public class Caixa extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        label_realizarVenda.setText("Realizar uma Venda");
-
         btn_voltar.setText("Voltar");
         btn_voltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -223,34 +225,32 @@ public class Caixa extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 527, Short.MAX_VALUE)
+                .addComponent(btn_voltar)
+                .addGap(356, 356, 356))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(225, 225, 225))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 479, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 418, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(label_realizarVenda)
-                        .addGap(354, 354, 354))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btn_voltar)
-                        .addGap(356, 356, 356))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(vender, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(321, 321, 321))))
+                    .addComponent(vender, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 418, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(22, 22, 22))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(35, 35, 35)
-                .addComponent(label_realizarVenda)
-                .addGap(39, 39, 39)
+                .addComponent(jLabel1)
+                .addGap(55, 55, 55)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(vender)
                 .addGap(18, 18, 18)
                 .addComponent(btn_voltar)
@@ -361,12 +361,12 @@ public class Caixa extends javax.swing.JFrame {
     private javax.swing.JButton btn_voltar;
     private javax.swing.JTextField campo_nomeProduto;
     private javax.swing.JTextField campo_quantidade;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel label_produto;
     private javax.swing.JLabel label_quantidade;
-    private javax.swing.JLabel label_realizarVenda;
     private javax.swing.JLabel label_tipo;
     private javax.swing.JLabel label_total;
     private javax.swing.JTable tabela_compras;
