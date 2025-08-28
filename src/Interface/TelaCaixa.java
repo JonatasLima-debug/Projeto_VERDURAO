@@ -10,6 +10,8 @@ package Interface;
  */
 import Produtos.*;
 import BD_Verdurao.*;
+import java.util.List;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -55,6 +57,7 @@ public class TelaCaixa extends javax.swing.JFrame {
     private void initComponents() {
 
         Popup_buscarProd = new javax.swing.JPopupMenu();
+        menuItem_buscarProd = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabela_compras = new javax.swing.JTable();
@@ -71,6 +74,9 @@ public class TelaCaixa extends javax.swing.JFrame {
         btn_voltar = new javax.swing.JButton();
         vender = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+
+        menuItem_buscarProd.setText("jMenuItem1");
+        menuItem_buscarProd.getAccessibleContext().setAccessibleParent(campo_nomeProduto);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -102,6 +108,11 @@ public class TelaCaixa extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tabela_compras.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabela_comprasMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tabela_compras);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -110,7 +121,7 @@ public class TelaCaixa extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 508, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 499, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -215,7 +226,7 @@ public class TelaCaixa extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_adicionarLista)
                     .addComponent(btn_removerLista))
-                .addGap(18, 18, Short.MAX_VALUE)
+                .addGap(18, 29, Short.MAX_VALUE)
                 .addComponent(label_total, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -243,14 +254,14 @@ public class TelaCaixa extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 520, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 511, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 418, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(vender, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(22, 22, 22))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(452, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -311,6 +322,13 @@ public class TelaCaixa extends javax.swing.JFrame {
 
     private void btn_removerListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_removerListaActionPerformed
         // TODO add your handling code here:
+        int click = tabela_compras.getSelectedRow();
+        if(click!=-1){
+           ((DefaultTableModel) tabela_compras.getModel()).removeRow(click);
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Seleção não correspondente");
+        }
     }//GEN-LAST:event_btn_removerListaActionPerformed
 
     private void btn_voltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_voltarActionPerformed
@@ -319,6 +337,31 @@ public class TelaCaixa extends javax.swing.JFrame {
 
     private void campo_nomeProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campo_nomeProdutoActionPerformed
         // TODO add your handling code here:
+        String prodDigitado = campo_nomeProduto.getText().trim().toUpperCase();
+        Popup_buscarProd.removeAll();
+        
+        if(!prodDigitado.isEmpty()){
+            List<Produtos> todosProdutos = ps.dao.buscarTodos();
+            for(Produtos p : todosProdutos){
+                String nomeProd = p.getNome().toUpperCase();
+                if(nomeProd.startsWith(prodDigitado)){
+                    menuItem_buscarProd = new JMenuItem(p.getNome());
+                    menuItem_buscarProd.addActionListener(new java.awt.event.ActionListener() {
+                        
+                    public void actionPerformed(java.awt.event.ActionEvent evt) {
+                        campo_nomeProduto.setText(p.getNome());
+                        ComboBox_tipo.setSelectedItem(p.getTipo()); // já preenche o tipo conforme o nome digitado
+                        Popup_buscarProd.setVisible(false);
+                        }
+                    });
+                    Popup_buscarProd.add(menuItem_buscarProd);
+                }
+                   
+            }
+            if (Popup_buscarProd.getComponentCount() > 0) {
+                Popup_buscarProd.show(campo_nomeProduto, 0, campo_nomeProduto.getHeight());
+            }
+        }
     }//GEN-LAST:event_campo_nomeProdutoActionPerformed
 
     private void venderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_venderActionPerformed
@@ -358,6 +401,11 @@ public class TelaCaixa extends javax.swing.JFrame {
     JOptionPane.showMessageDialog(this, "Venda registrada com sucesso!");
     model.setRowCount(0); // Limpa a tabela depois da venda
     }//GEN-LAST:event_venderActionPerformed
+
+    private void tabela_comprasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabela_comprasMouseClicked
+        // TODO add your handling code here:
+        btn_removerLista.setEnabled(true);
+    }//GEN-LAST:event_tabela_comprasMouseClicked
 
     /**
      * @param args the command line arguments
@@ -411,6 +459,7 @@ public class TelaCaixa extends javax.swing.JFrame {
     private javax.swing.JLabel label_quantidade;
     private javax.swing.JLabel label_tipo;
     private javax.swing.JLabel label_total;
+    private javax.swing.JMenuItem menuItem_buscarProd;
     private javax.swing.JTable tabela_compras;
     private javax.swing.JButton vender;
     // End of variables declaration//GEN-END:variables
