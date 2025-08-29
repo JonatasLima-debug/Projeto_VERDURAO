@@ -1,27 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
-  <NonVisualComponents>
-    <Container class="javax.swing.JPopupMenu" name="Popup_buscarProd">
-
-      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
-        <Property name="useNullLayout" type="boolean" value="true"/>
-      </Layout>
-    </Container>
-    <Component class="javax.swing.JMenuItem" name="menuItem_buscarProd">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jMenuItem1"/>
-      </Properties>
-      <AccessibilityProperties>
-        <Property name="AccessibleContext.accessibleParent" type="javax.accessibility.Accessible" editor="org.netbeans.modules.form.ComponentChooserEditor">
-          <ComponentRef name="campo_nomeProduto"/>
-        </Property>
-      </AccessibilityProperties>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value=""/>
-      </AuxValues>
-    </Component>
-  </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
   </Properties>
@@ -45,16 +24,15 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <Component id="jPanel1" pref="511" max="32767" attributes="0"/>
+              <Component id="jPanel1" pref="1113" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jPanel2" min="-2" pref="418" max="-2" attributes="0"/>
                   <Component id="vender" min="-2" pref="182" max="-2" attributes="0"/>
+                  <Component id="jPanel2" min="-2" pref="440" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="452" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="jLabel1" min="-2" pref="41" max="-2" attributes="0"/>
@@ -75,12 +53,15 @@
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jPanel1" min="-2" pref="290" max="-2" attributes="0"/>
-                  <Component id="jPanel2" min="-2" pref="261" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Component id="jPanel1" min="-2" pref="290" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="17" max="32767" attributes="0"/>
+                  </Group>
+                  <Component id="jPanel2" pref="307" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="vender" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="204" max="-2" attributes="0"/>
               <Component id="btn_voltar" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
           </Group>
@@ -100,7 +81,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jScrollPane1" pref="499" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" pref="1101" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -187,31 +168,6 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="label_quantidade" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="label_produto" min="-2" max="-2" attributes="0"/>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
-                                          <Component id="label_tipo" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                              </Group>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="ComboBox_tipo" alignment="0" max="32767" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="campo_quantidade" pref="99" max="32767" attributes="0"/>
-                                  <EmptySpace min="-2" pref="232" max="-2" attributes="0"/>
-                              </Group>
-                              <Component id="campo_nomeProduto" alignment="0" max="32767" attributes="0"/>
-                          </Group>
-                      </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                           <Component id="btn_adicionarLista" min="-2" max="-2" attributes="0"/>
@@ -219,6 +175,32 @@
                           <Component id="btn_removerLista" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Component id="label_total" alignment="0" min="-2" pref="438" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="label_produto" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+                                      <Component id="label_tipo" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="ComboBox_tipo" min="-2" pref="266" max="-2" attributes="0"/>
+                                  <Component id="campo_nomeProduto" alignment="0" pref="289" max="32767" attributes="0"/>
+                                  <Component id="list_buscarProduto" alignment="0" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="label_quantidade" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="campo_quantidade" min="-2" pref="281" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -228,26 +210,28 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="ComboBox_tipo" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="label_tipo" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="label_produto" min="-2" max="-2" attributes="0"/>
-                      <Component id="campo_nomeProduto" min="-2" max="-2" attributes="0"/>
+                      <Component id="label_tipo" min="-2" max="-2" attributes="0"/>
+                      <Component id="ComboBox_tipo" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="label_produto" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="campo_nomeProduto" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="list_buscarProduto" min="-2" pref="42" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="label_quantidade" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="campo_quantidade" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="btn_adicionarLista" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btn_removerLista" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="separate" pref="20" max="32767" attributes="0"/>
+                  <EmptySpace type="separate" max="32767" attributes="0"/>
                   <Component id="label_total" min="-2" pref="43" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -255,23 +239,6 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JComboBox" name="ComboBox_tipo">
-          <Properties>
-            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="3">
-                <StringItem index="0" value="Verdura"/>
-                <StringItem index="1" value="Fruta"/>
-                <StringItem index="2" value="Legume"/>
-              </StringArray>
-            </Property>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ComboBox_tipoActionPerformed"/>
-          </Events>
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-          </AuxValues>
-        </Component>
         <Component class="javax.swing.JLabel" name="label_tipo">
           <Properties>
             <Property name="text" type="java.lang.String" value="Tipo:"/>
@@ -284,10 +251,8 @@
         </Component>
         <Component class="javax.swing.JLabel" name="label_quantidade">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Quantidade:"/>
+            <Property name="text" type="java.lang.String" value="Quantidade (kg):"/>
           </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="campo_quantidade">
         </Component>
         <Component class="javax.swing.JButton" name="btn_adicionarLista">
           <Properties>
@@ -327,13 +292,66 @@
         </Component>
         <Component class="javax.swing.JTextField" name="campo_nomeProduto">
           <Properties>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
+                <BevelBorder/>
+              </Border>
+            </Property>
             <Property name="componentPopupMenu" type="javax.swing.JPopupMenu" editor="org.netbeans.modules.form.ComponentChooserEditor">
-              <ComponentRef name="Popup_buscarProd"/>
+              <ComponentRef name="default"/>
             </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campo_nomeProdutoActionPerformed"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JList" name="list_buscarProduto">
+          <Properties>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                <LineBorder/>
+              </Border>
+            </Property>
+            <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
+              <StringArray count="0"/>
+            </Property>
+            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[64, 22]"/>
+            </Property>
+          </Properties>
+          <AccessibilityProperties>
+            <Property name="AccessibleContext.accessibleParent" type="javax.accessibility.Accessible" editor="org.netbeans.modules.form.ComponentChooserEditor">
+              <ComponentRef name="campo_nomeProduto"/>
+            </Property>
+          </AccessibilityProperties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="list_buscarProdutoMouseClicked"/>
+          </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JTextField" name="campo_quantidade">
+        </Component>
+        <Component class="javax.swing.JComboBox" name="ComboBox_tipo">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="3">
+                <StringItem index="0" value="Verdura"/>
+                <StringItem index="1" value="Fruta"/>
+                <StringItem index="2" value="Legume"/>
+              </StringArray>
+            </Property>
+            <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[77, 32767]"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ComboBox_tipoActionPerformed"/>
+          </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>

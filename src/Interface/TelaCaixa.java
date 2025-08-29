@@ -14,12 +14,14 @@ import Vendas.VendasDAO;
 import Vendas.VendasService;
 
 import java.util.List;
+import javax.swing.DefaultListModel;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class TelaCaixa extends javax.swing.JFrame {
     DefaultTableModel listaCompras;
+    private DefaultListModel<String> sugestaoNome;
     BancoDeDados bd;
     ProdutoDAO pd;
     ProdutoService ps;
@@ -33,6 +35,8 @@ public class TelaCaixa extends javax.swing.JFrame {
         //setContentPane(new FundoCaixa());
 
         initComponents();
+        list_buscarProduto.setVisible(false);
+        completaJList();
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setTitle("Verdurão UFCat - Caixa");
@@ -43,8 +47,13 @@ public class TelaCaixa extends javax.swing.JFrame {
         bdv = new BancodeDados_vendas();
         vd = new VendasDAO(bdv);
         vs = new VendasService(ps,vd);
+        
         listaCompras = (DefaultTableModel) tabela_compras.getModel();
         listaCompras.setRowCount(0);
+        
+        sugestaoNome = new DefaultListModel<>();
+        list_buscarProduto.setModel(sugestaoNome);
+        
     }
     
     public void TabelaComprasBD(int id, String nome,float preco, String tipo, float quantidade){
@@ -55,7 +64,48 @@ public class TelaCaixa extends javax.swing.JFrame {
             System.out.println(erro);
         }
     }
+    
+    private void completaJList() {
+        // Model da lista
+        sugestaoNome = new DefaultListModel<>();
+        list_buscarProduto.setModel(sugestaoNome);
 
+        // Listener do campo de texto
+        campo_nomeProduto.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
+            public void insertUpdate(javax.swing.event.DocumentEvent e) {
+                campo_nomeProdutoActionPerformed(null);
+            }
+
+            public void removeUpdate(javax.swing.event.DocumentEvent e) {
+                campo_nomeProdutoActionPerformed(null);
+            }
+
+            public void changedUpdate(javax.swing.event.DocumentEvent e) {
+                campo_nomeProdutoActionPerformed(null);
+            }
+        });
+
+        // Listener da lista
+        list_buscarProduto.addListSelectionListener(e -> {
+            if (!e.getValueIsAdjusting()) {
+                String selecionado = list_buscarProduto.getSelectedValue();
+                if (selecionado != null) {
+                    campo_nomeProduto.setText(selecionado);
+
+                    // Preenche tipo
+                    List<Produtos> todosProdutos = ps.dao.buscarTodos();
+                    for (Produtos p : todosProdutos) {
+                        if (p.getNome().equalsIgnoreCase(selecionado)) {
+                            ComboBox_tipo.setSelectedItem(p.getTipo());
+                            break;
+                        }
+                    }
+
+                    sugestaoNome.clear();
+                }
+            }
+        });
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -65,27 +115,23 @@ public class TelaCaixa extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Popup_buscarProd = new javax.swing.JPopupMenu();
-        menuItem_buscarProd = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabela_compras = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
-        ComboBox_tipo = new javax.swing.JComboBox<>();
         label_tipo = new javax.swing.JLabel();
         label_produto = new javax.swing.JLabel();
         label_quantidade = new javax.swing.JLabel();
-        campo_quantidade = new javax.swing.JTextField();
         btn_adicionarLista = new javax.swing.JButton();
         btn_removerLista = new javax.swing.JButton();
         label_total = new javax.swing.JLabel();
         campo_nomeProduto = new javax.swing.JTextField();
+        list_buscarProduto = new javax.swing.JList<>();
+        campo_quantidade = new javax.swing.JTextField();
+        ComboBox_tipo = new javax.swing.JComboBox<>();
         btn_voltar = new javax.swing.JButton();
         vender = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-
-        menuItem_buscarProd.setText("jMenuItem1");
-        menuItem_buscarProd.getAccessibleContext().setAccessibleParent(campo_nomeProduto);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -130,7 +176,7 @@ public class TelaCaixa extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 499, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1101, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -143,18 +189,11 @@ public class TelaCaixa extends javax.swing.JFrame {
 
         jPanel2.setPreferredSize(new java.awt.Dimension(410, 560));
 
-        ComboBox_tipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Verdura", "Fruta", "Legume" }));
-        ComboBox_tipo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ComboBox_tipoActionPerformed(evt);
-            }
-        });
-
         label_tipo.setText("Tipo:");
 
         label_produto.setText("Produto:");
 
-        label_quantidade.setText("Quantidade:");
+        label_quantidade.setText("Quantidade (kg):");
 
         btn_adicionarLista.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
         btn_adicionarLista.setText("Adicionar à Lista");
@@ -177,10 +216,26 @@ public class TelaCaixa extends javax.swing.JFrame {
         label_total.setText(" TOTAL: R$//setText depois para alterar ");
         label_total.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
-        campo_nomeProduto.setComponentPopupMenu(Popup_buscarProd);
+        campo_nomeProduto.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         campo_nomeProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 campo_nomeProdutoActionPerformed(evt);
+            }
+        });
+
+        list_buscarProduto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        list_buscarProduto.setPreferredSize(new java.awt.Dimension(64, 22));
+        list_buscarProduto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                list_buscarProdutoMouseClicked(evt);
+            }
+        });
+
+        ComboBox_tipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Verdura", "Fruta", "Legume" }));
+        ComboBox_tipo.setMaximumSize(new java.awt.Dimension(77, 32767));
+        ComboBox_tipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ComboBox_tipoActionPerformed(evt);
             }
         });
 
@@ -191,54 +246,60 @@ public class TelaCaixa extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(label_quantidade)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(label_produto)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGap(8, 8, 8)
-                                        .addComponent(label_tipo)))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(ComboBox_tipo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(campo_quantidade, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
-                                .addGap(232, 232, 232))
-                            .addComponent(campo_nomeProduto)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(24, 24, 24)
                         .addComponent(btn_adicionarLista)
                         .addGap(49, 49, 49)
                         .addComponent(btn_removerLista))
-                    .addComponent(label_total, javax.swing.GroupLayout.PREFERRED_SIZE, 438, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(label_total, javax.swing.GroupLayout.PREFERRED_SIZE, 438, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addGap(10, 10, 10)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(label_produto)
+                                .addGroup(jPanel2Layout.createSequentialGroup()
+                                    .addGap(8, 8, 8)
+                                    .addComponent(label_tipo)))
+                            .addGap(18, 18, 18)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(ComboBox_tipo, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(campo_nomeProduto, javax.swing.GroupLayout.DEFAULT_SIZE, 289, Short.MAX_VALUE)
+                                .addComponent(list_buscarProduto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGap(40, 40, 40))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(label_quantidade)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(campo_quantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(27, 27, 27))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ComboBox_tipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(label_tipo))
-                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(label_produto)
-                    .addComponent(campo_nomeProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(label_tipo)
+                    .addComponent(ComboBox_tipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(label_produto)
+                    .addComponent(campo_nomeProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(list_buscarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(label_quantidade)
                     .addComponent(campo_quantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(47, 47, 47)
+                .addGap(21, 21, 21)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_adicionarLista)
                     .addComponent(btn_removerLista))
-                .addGap(18, 29, Short.MAX_VALUE)
+                .addGap(18, 18, Short.MAX_VALUE)
                 .addComponent(label_total, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
+
+        list_buscarProduto.getAccessibleContext().setAccessibleParent(campo_nomeProduto);
 
         btn_voltar.setBackground(new java.awt.Color(153, 255, 153));
         btn_voltar.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
@@ -263,14 +324,13 @@ public class TelaCaixa extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 511, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1113, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 418, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(vender, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(22, 22, 22))
+                    .addComponent(vender, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(452, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -286,11 +346,13 @@ public class TelaCaixa extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(55, 55, 55)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 17, Short.MAX_VALUE))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(vender)
-                .addGap(45, 45, 45)
+                .addGap(204, 204, 204)
                 .addComponent(btn_voltar)
                 .addGap(14, 14, 14))
         );
@@ -303,6 +365,7 @@ public class TelaCaixa extends javax.swing.JFrame {
     }//GEN-LAST:event_ComboBox_tipoActionPerformed
 
     private void btn_adicionarListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_adicionarListaActionPerformed
+        // TODO add your handling code here:                                           
         // TODO add your handling code here:
         String nome = campo_nomeProduto.getText();
         if(pd.produtoExiste(nome)){
@@ -324,9 +387,8 @@ public class TelaCaixa extends javax.swing.JFrame {
         else{
             JOptionPane.showMessageDialog(rootPane, "Esse produto não está cadastrado");
             campo_nomeProduto.setText("");
-        }
-        
-        
+        }                                                
+
     }//GEN-LAST:event_btn_adicionarListaActionPerformed
 
     private void btn_removerListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_removerListaActionPerformed
@@ -346,29 +408,16 @@ public class TelaCaixa extends javax.swing.JFrame {
 
     private void campo_nomeProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campo_nomeProdutoActionPerformed
         // TODO add your handling code here:
-        String prodDigitado = campo_nomeProduto.getText().trim().toUpperCase();
-        Popup_buscarProd.removeAll();
-        
-        if(!prodDigitado.isEmpty()){
-            List<Produtos> todosProdutos = ps.dao.buscarTodos();
-            for(Produtos p : todosProdutos){
-                String nomeProd = p.getNome().toUpperCase();
-                if(nomeProd.startsWith(prodDigitado)){
-                    menuItem_buscarProd = new JMenuItem(p.getNome());
-                    menuItem_buscarProd.addActionListener(new java.awt.event.ActionListener() {
-                        
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        campo_nomeProduto.setText(p.getNome());
-                        ComboBox_tipo.setSelectedItem(p.getTipo()); // já preenche o tipo conforme o nome digitado
-                        Popup_buscarProd.setVisible(false);
-                        }
-                    });
-                    Popup_buscarProd.add(menuItem_buscarProd);
+        String letras = campo_nomeProduto.getText().trim().toUpperCase();
+        sugestaoNome.clear();
+
+        if (!letras.isEmpty()) {
+            list_buscarProduto.setVisible(true);
+            List<Produtos> todosProdutos = ps.dao.buscarTodos(); // pega produtos do banco
+            for (Produtos p : todosProdutos) {
+                if (p.getNome().toUpperCase().startsWith(letras)) {
+                    sugestaoNome.addElement(p.getNome());
                 }
-                   
-            }
-            if (Popup_buscarProd.getComponentCount() > 0) {
-                Popup_buscarProd.show(campo_nomeProduto, 0, campo_nomeProduto.getHeight());
             }
         }
     }//GEN-LAST:event_campo_nomeProdutoActionPerformed
@@ -416,6 +465,11 @@ public class TelaCaixa extends javax.swing.JFrame {
         btn_removerLista.setEnabled(true);
     }//GEN-LAST:event_tabela_comprasMouseClicked
 
+    private void list_buscarProdutoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_list_buscarProdutoMouseClicked
+        // TODO add your handling code here:
+        list_buscarProduto.setVisible(false);
+    }//GEN-LAST:event_list_buscarProdutoMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -454,7 +508,6 @@ public class TelaCaixa extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> ComboBox_tipo;
-    private javax.swing.JPopupMenu Popup_buscarProd;
     private javax.swing.JButton btn_adicionarLista;
     private javax.swing.JButton btn_removerLista;
     private javax.swing.JButton btn_voltar;
@@ -468,7 +521,7 @@ public class TelaCaixa extends javax.swing.JFrame {
     private javax.swing.JLabel label_quantidade;
     private javax.swing.JLabel label_tipo;
     private javax.swing.JLabel label_total;
-    private javax.swing.JMenuItem menuItem_buscarProd;
+    private javax.swing.JList<String> list_buscarProduto;
     private javax.swing.JTable tabela_compras;
     private javax.swing.JButton vender;
     // End of variables declaration//GEN-END:variables
