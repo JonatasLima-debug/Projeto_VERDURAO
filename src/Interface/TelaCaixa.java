@@ -18,6 +18,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import java.text.DecimalFormat;
 
 public class TelaCaixa extends javax.swing.JFrame {
     DefaultTableModel listaCompras;
@@ -28,6 +29,7 @@ public class TelaCaixa extends javax.swing.JFrame {
     BancodeDados_vendas bdv;
     VendasService vs;
     VendasDAO vd;
+    float contagemPreco = 0;
     /**
      * Creates new form Caixa
      */
@@ -54,11 +56,13 @@ public class TelaCaixa extends javax.swing.JFrame {
         sugestaoNome = new DefaultListModel<>();
         list_buscarProduto.setModel(sugestaoNome);
         
+        label_total.setText("TOTAL: R$"+ String.format("%.2f", contagemPreco));
+        
     }
     
     public void TabelaComprasBD(int id, String nome,float preco, String tipo, float quantidade){
          try{
-            listaCompras.addRow(new Object[]{id,nome,tipo,preco,quantidade});
+            listaCompras.addRow(new Object[]{id,nome,tipo,preco*quantidade,quantidade});
           }
         catch(Exception erro){
             System.out.println(erro);
@@ -145,7 +149,7 @@ public class TelaCaixa extends javax.swing.JFrame {
                 {null, null, null, null, null}
             },
             new String [] {
-                "ID", "Nome do Produto", "Tipo", "Preço por kg", "Quantidade"
+                "ID", "Nome do Produto", "Tipo", "Preço X Quantidade", "Quantidade (kg)"
             }
         ) {
             Class[] types = new Class [] {
@@ -176,8 +180,8 @@ public class TelaCaixa extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1101, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 567, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -213,7 +217,7 @@ public class TelaCaixa extends javax.swing.JFrame {
         });
 
         label_total.setFont(new java.awt.Font("Trebuchet MS", 0, 24)); // NOI18N
-        label_total.setText(" TOTAL: R$//setText depois para alterar ");
+        label_total.setText(" TOTAL: R$0,00 ");
         label_total.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
         campo_nomeProduto.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -253,33 +257,33 @@ public class TelaCaixa extends javax.swing.JFrame {
                     .addComponent(label_total, javax.swing.GroupLayout.PREFERRED_SIZE, 438, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addGap(10, 10, 10)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(label_produto)
+                            .addGap(29, 29, 29)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addGroup(jPanel2Layout.createSequentialGroup()
                                     .addGap(8, 8, 8)
-                                    .addComponent(label_tipo)))
-                            .addGap(18, 18, 18)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(ComboBox_tipo, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(campo_nomeProduto, javax.swing.GroupLayout.DEFAULT_SIZE, 289, Short.MAX_VALUE)
-                                .addComponent(list_buscarProduto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGap(40, 40, 40))
+                                    .addComponent(label_tipo)
+                                    .addGap(33, 33, 33)
+                                    .addComponent(ComboBox_tipo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(jPanel2Layout.createSequentialGroup()
+                                    .addComponent(label_produto)
+                                    .addGap(22, 22, 22)
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(list_buscarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(campo_nomeProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                             .addContainerGap()
                             .addComponent(label_quantidade)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(campo_quantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(27, 27, 27))))
+                            .addComponent(campo_quantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(label_tipo)
-                    .addComponent(ComboBox_tipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ComboBox_tipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(label_tipo))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(label_produto)
@@ -324,11 +328,12 @@ public class TelaCaixa extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1113, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 579, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(vender, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 39, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -337,7 +342,7 @@ public class TelaCaixa extends javax.swing.JFrame {
                         .addGap(225, 225, 225))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(btn_voltar)
-                        .addGap(426, 426, 426))))
+                        .addGap(461, 461, 461))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -348,13 +353,13 @@ public class TelaCaixa extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 17, Short.MAX_VALUE))
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(vender)
-                .addGap(204, 204, 204)
+                .addGap(54, 54, 54)
                 .addComponent(btn_voltar)
-                .addGap(14, 14, 14))
+                .addGap(19, 19, 19))
         );
 
         pack();
@@ -365,8 +370,7 @@ public class TelaCaixa extends javax.swing.JFrame {
     }//GEN-LAST:event_ComboBox_tipoActionPerformed
 
     private void btn_adicionarListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_adicionarListaActionPerformed
-        // TODO add your handling code here:                                           
-        // TODO add your handling code here:
+        
         String nome = campo_nomeProduto.getText();
         if(pd.produtoExiste(nome)){
             float qtd = Float.parseFloat(campo_quantidade.getText());
@@ -376,7 +380,12 @@ public class TelaCaixa extends javax.swing.JFrame {
                 String tipo = (String) ComboBox_tipo.getSelectedItem();
                 int id = pd.obterIdPorNome(nome);
                 float preco = pd.obterPrecoPorNome(nome);
+                float quantidade = pd.obterQuantidadePorNome(nome);
                 TabelaComprasBD(id,nome.toUpperCase(), preco, tipo, qtd);
+                              
+                contagemPreco += preco*qtd;
+                
+                label_total.setText("TOTAL: R$"+ String.format("%.2f", contagemPreco));
             }
             else{
                 JOptionPane.showMessageDialog(rootPane, "Quantidade inexistente!\nQuantidade de '' "+nome+"'' em estoque: "+qtdTotal);
@@ -395,7 +404,13 @@ public class TelaCaixa extends javax.swing.JFrame {
         // TODO add your handling code here:
         int click = tabela_compras.getSelectedRow();
         if(click!=-1){
-           ((DefaultTableModel) tabela_compras.getModel()).removeRow(click);
+           
+           float preco = Float.parseFloat(listaCompras.getValueAt(click,3).toString());
+           listaCompras.removeRow(click);
+           
+           contagemPreco -= preco;
+           label_total.setText("TOTAL: R$"+ String.format("%.2f", contagemPreco));
+           
         }
         else{
             JOptionPane.showMessageDialog(null, "Seleção não correspondente");
@@ -432,7 +447,7 @@ public class TelaCaixa extends javax.swing.JFrame {
         return;
     }
 
-    float totalVenda = 0;
+    //float totalVenda = 0;
 
     for (int i = 0; i < rowCount; i++) {
         String nomeProduto = (String) model.getValueAt(i, 1); // Coluna 1 = Nome
@@ -446,15 +461,16 @@ public class TelaCaixa extends javax.swing.JFrame {
             vs.registrarVenda(nomeProduto, quantidade);
 
             // Soma ao total
-            float preco = Float.parseFloat(model.getValueAt(i, 3).toString()); // Coluna 3 = Preço por kg
-            totalVenda += preco * quantidade;
+            //float preco = Float.parseFloat(model.getValueAt(i, 3).toString()); // Coluna 3 = Preço por kg
+            //totalVenda += preco * quantidade;
         } else {
             JOptionPane.showMessageDialog(this, "Erro ao vender produto: " + nomeProduto);
         }
     }
 
     // Atualiza label do total
-    label_total.setText("TOTAL: R$ " + String.format("%.2f", totalVenda));
+    contagemPreco = 0;
+    label_total.setText("TOTAL: R$" + String.format("%.2f", contagemPreco));
 
     JOptionPane.showMessageDialog(this, "Venda registrada com sucesso!");
     model.setRowCount(0); // Limpa a tabela depois da venda
