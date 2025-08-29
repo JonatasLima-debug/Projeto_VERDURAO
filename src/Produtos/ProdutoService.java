@@ -13,11 +13,13 @@ public class ProdutoService {
     public boolean vender(String nomeProduto, float quantidadeCliente) {
         if (nomeProduto == null || nomeProduto.trim().isEmpty()) {
             System.out.println("Nome do produto inválido.");
+            JOptionPane.showMessageDialog(null, "Nome do produto inválido");
             return false;
         }
 
         if (quantidadeCliente <= 0) {
             System.out.println("Quantidade inválida para venda.");
+            JOptionPane.showMessageDialog(null, "Quantidade inválida para venda");
             return false;
         }
 
@@ -26,11 +28,13 @@ public class ProdutoService {
 
         if (precoUnitario == -1 || estoqueAtual == -1) {
             System.out.println("Produto não encontrado: " + nomeProduto);
+            JOptionPane.showMessageDialog(null, "Produto não encontrado");
             return false;
         }
 
         if (estoqueAtual < quantidadeCliente) {
             System.out.println("Estoque insuficiente! Estoque atual: " + estoqueAtual);
+            JOptionPane.showMessageDialog(null, "Estoque do produto insuficiente");
             return false;
         }
 
@@ -39,6 +43,7 @@ public class ProdutoService {
 
         System.out.printf("Venda realizada! Produto: %s | Total a pagar: R$ %.2f | Novo estoque: %s%n",
                 nomeProduto, (precoUnitario * quantidadeCliente) / 100.0, novoEstoque);
+ 
 
         return true;
     }
@@ -83,8 +88,5 @@ public class ProdutoService {
         if (dao.existeID(id)) dao.deletar(id);
     }
 
-    public void registrarVenda(String nomeProduto, float l) {
-         // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-        
-    }
+  
 }

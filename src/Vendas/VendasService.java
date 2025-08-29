@@ -3,6 +3,7 @@ package Vendas;
 import Produtos.ProdutoService;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import javax.swing.JOptionPane;
 
 public class VendasService {
     public ProdutoService produtoService;
@@ -20,6 +21,7 @@ public class VendasService {
 
         if (!vendaSucesso) {
             System.out.println("Falha ao registrar venda.");
+            JOptionPane.showMessageDialog(null, "Falha ao registrar venda");
             return;
         }
 
@@ -29,6 +31,7 @@ public class VendasService {
 
         if (idProduto == -1) {
             System.out.println("Produto não encontrado no banco.");
+            JOptionPane.showMessageDialog(null, "Produto não encontrado no banco de dados");
             return;
         }
 
@@ -47,6 +50,7 @@ public class VendasService {
             System.out.println("Venda registrada com sucesso!");
         } else {
             System.out.println("Erro ao registrar venda no banco.");
+            JOptionPane.showMessageDialog(null, "Erro ao registrar venda no banco");
         }
     }
 
