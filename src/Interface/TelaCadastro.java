@@ -341,8 +341,8 @@ public class TelaCadastro extends javax.swing.JFrame {
             if(excluir == 0){
                 try {
                     ps.ExcluirProduto(Integer.parseInt(id)); // precisa ter esse método no ProdutoService/DAO
-                    JOptionPane.showMessageDialog(this, "Produto excluído com sucesso!");
                     TabelaCadastroBD(); // recarrega tabela
+                    JOptionPane.showMessageDialog(this, "Produto excluído com sucesso!");
                  } 
                 catch (Exception e) {
                     JOptionPane.showMessageDialog(this, "Erro ao excluir: " + e.getMessage());
@@ -363,30 +363,24 @@ public class TelaCadastro extends javax.swing.JFrame {
             if(quantidade <= 0){
                 JOptionPane.showMessageDialog(rootPane, "A quantidade deve ser maior do que 0.","Quantidade inválida",2);
                 Campo_quantidade.setText("");
-                Campo_nomeProduto.setText("");
-                Campo_preco.setText("");
-                modoCadastro = "Navegar";
-                manipularInterfaceCadastro();
                 return;
             }
             String tipo = (String) ComboBox_tipo.getSelectedItem();
             float preco = Float.parseFloat(Campo_preco.getText());
             if(preco <= 0){
                 JOptionPane.showMessageDialog(rootPane, "O preço deve ser maior do que 0.","Preço inválido",2);
-                Campo_quantidade.setText("");
-                Campo_nomeProduto.setText("");
                 Campo_preco.setText("");
-                modoCadastro = "Navegar";
-                manipularInterfaceCadastro();
                 return;
             }
             if(modoCadastro.equals("Novo")){
                ps.CadastrarProduto(nome, preco, tipo, quantidade);
+               TabelaCadastroBD();
                JOptionPane.showMessageDialog(rootPane, "Produto salvo com sucesso!", "Cadastro", 1);  
             }
             else if(modoCadastro.equals("Editar")){
                 int id = ps.obterIdPorNome(nome);
                 ps.EditarProduto(id,nome, preco, tipo, quantidade);
+                TabelaCadastroBD();
                 JOptionPane.showMessageDialog(rootPane, "Produto editado com sucesso!", "Edição", 1);  
             } 
         }
@@ -397,7 +391,6 @@ public class TelaCadastro extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "Erro: campos não preenchidos corretamente.", "Campos vazios", 2);
          }
         
-        TabelaCadastroBD();
         Campo_quantidade.setText("");
         Campo_nomeProduto.setText("");
         Campo_preco.setText("");
@@ -433,6 +426,7 @@ public class TelaCadastro extends javax.swing.JFrame {
         // TODO add your handling code here:
         int click = tabela_produtos.getSelectedRow();
         if(click!=-1){
+            btn_novo.setEnabled(false);
             String nome = (String) tabela_produtos.getValueAt(click, 1);
             String tipo = (String) tabela_produtos.getValueAt(click, 2);
             String preco = tabela_produtos.getValueAt(click, 3).toString();
