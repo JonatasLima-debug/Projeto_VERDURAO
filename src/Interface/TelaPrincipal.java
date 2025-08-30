@@ -8,6 +8,8 @@ package Interface;
  *
  * @author Lorena
  */
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 
 public class TelaPrincipal extends javax.swing.JFrame {
@@ -18,10 +20,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
     public TelaPrincipal() {
         //setContentPane(new FundoPrincipal());
        initComponents(); // inicializa os botões e layout
-        setLocationRelativeTo(null);
+       setExtendedState(MAXIMIZED_BOTH);
+       setResizable(false);
+       setLocationRelativeTo(null);
         setTitle("Verdurão UFCat");
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -31,12 +34,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        painelPrincipal = new javax.swing.JPanel();
         btn_cadastro = new javax.swing.JButton();
         btn_caixa = new javax.swing.JButton();
         btn_estoque = new javax.swing.JButton();
         btn_sair = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setMaximumSize(null);
+        setMinimumSize(null);
 
         btn_cadastro.setBackground(new java.awt.Color(255, 255, 255));
         btn_cadastro.setFont(new java.awt.Font("Trebuchet MS", 0, 24)); // NOI18N
@@ -78,37 +85,55 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        javax.swing.GroupLayout painelPrincipalLayout = new javax.swing.GroupLayout(painelPrincipal);
+        painelPrincipal.setLayout(painelPrincipalLayout);
+        painelPrincipalLayout.setHorizontalGroup(
+            painelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(painelPrincipalLayout.createSequentialGroup()
+                .addGroup(painelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(painelPrincipalLayout.createSequentialGroup()
+                        .addGap(246, 246, 246)
+                        .addGroup(painelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(painelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(btn_caixa, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btn_cadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(painelPrincipalLayout.createSequentialGroup()
+                                .addGap(1, 1, 1)
+                                .addComponent(btn_estoque, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(painelPrincipalLayout.createSequentialGroup()
+                        .addGap(326, 326, 326)
+                        .addComponent(btn_sair, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(253, Short.MAX_VALUE))
+        );
+        painelPrincipalLayout.setVerticalGroup(
+            painelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelPrincipalLayout.createSequentialGroup()
+                .addContainerGap(156, Short.MAX_VALUE)
+                .addComponent(btn_cadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btn_caixa, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btn_estoque, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(65, 65, 65)
+                .addComponent(btn_sair, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(54, 54, 54))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btn_sair, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(276, 276, 276))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(207, 207, 207)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btn_estoque, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn_caixa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn_cadastro))
-                .addContainerGap(210, Short.MAX_VALUE))
+                .addComponent(painelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 93, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(158, Short.MAX_VALUE)
-                .addComponent(btn_cadastro)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btn_caixa)
-                .addGap(18, 18, 18)
-                .addComponent(btn_estoque)
-                .addGap(61, 61, 61)
-                .addComponent(btn_sair)
-                .addGap(23, 23, 23))
+            .addComponent(painelPrincipal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_cadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cadastroActionPerformed
@@ -172,5 +197,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btn_caixa;
     private javax.swing.JButton btn_estoque;
     private javax.swing.JButton btn_sair;
+    private javax.swing.JPanel painelPrincipal;
     // End of variables declaration//GEN-END:variables
 }

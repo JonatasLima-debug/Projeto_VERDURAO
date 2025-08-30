@@ -18,6 +18,7 @@ public class TelaLogin extends javax.swing.JFrame {
         //setContentPane(new FundoLogin());
 
         initComponents();
+        setState(TelaLogin.ICONIFIED);
         setLocationRelativeTo(null);
         setTitle("Verdurão UFCat - Área de Login");
         setResizable(false);
