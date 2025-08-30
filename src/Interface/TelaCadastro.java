@@ -124,6 +124,9 @@ public class TelaCadastro extends javax.swing.JFrame {
         btn_voltar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(950, 572));
+        setMinimumSize(new java.awt.Dimension(920, 600));
+        setPreferredSize(new java.awt.Dimension(940, 700));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         getContentPane().add(label_cadastroProdutos, new org.netbeans.lib.awtextra.AbsoluteConstraints(375, 14, -1, -1));
 
@@ -163,7 +166,9 @@ public class TelaCadastro extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 434, 410));
 
-        btn_editar.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
+        btn_editar.setBackground(new java.awt.Color(255, 255, 255));
+        btn_editar.setFont(new java.awt.Font("Trebuchet MS", 0, 24)); // NOI18N
+        btn_editar.setForeground(new java.awt.Color(0, 0, 0));
         btn_editar.setText("Editar");
         btn_editar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -172,7 +177,9 @@ public class TelaCadastro extends javax.swing.JFrame {
         });
         getContentPane().add(btn_editar, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 420, -1, -1));
 
-        btn_excluir.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
+        btn_excluir.setBackground(new java.awt.Color(255, 255, 255));
+        btn_excluir.setFont(new java.awt.Font("Trebuchet MS", 0, 24)); // NOI18N
+        btn_excluir.setForeground(new java.awt.Color(0, 0, 0));
         btn_excluir.setText("Excluir");
         btn_excluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -181,7 +188,9 @@ public class TelaCadastro extends javax.swing.JFrame {
         });
         getContentPane().add(btn_excluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 420, -1, -1));
 
-        btn_novo.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
+        btn_novo.setBackground(new java.awt.Color(255, 255, 255));
+        btn_novo.setFont(new java.awt.Font("Trebuchet MS", 0, 24)); // NOI18N
+        btn_novo.setForeground(new java.awt.Color(0, 0, 0));
         btn_novo.setText("Novo");
         btn_novo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -293,7 +302,7 @@ public class TelaCadastro extends javax.swing.JFrame {
         getContentPane().add(panel_cadastrarProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 110, 450, -1));
 
         btn_voltar.setBackground(new java.awt.Color(153, 255, 153));
-        btn_voltar.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
+        btn_voltar.setFont(new java.awt.Font("Trebuchet MS", 0, 24)); // NOI18N
         btn_voltar.setForeground(new java.awt.Color(0, 0, 0));
         btn_voltar.setText("Voltar");
         btn_voltar.addActionListener(new java.awt.event.ActionListener() {
@@ -301,7 +310,7 @@ public class TelaCadastro extends javax.swing.JFrame {
                 btn_voltarActionPerformed(evt);
             }
         });
-        getContentPane().add(btn_voltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 540, -1, -1));
+        getContentPane().add(btn_voltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 610, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

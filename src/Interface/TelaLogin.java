@@ -18,7 +18,7 @@ public class TelaLogin extends javax.swing.JFrame {
         //setContentPane(new FundoLogin());
 
         initComponents();
-        setState(TelaLogin.ICONIFIED);
+        //setState(TelaLogin.ICONIFIED);
         setLocationRelativeTo(null);
         setTitle("Verdurão UFCat - Área de Login");
         setResizable(false);
@@ -43,6 +43,7 @@ public class TelaLogin extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(0, 51, 0));
         setMaximumSize(new java.awt.Dimension(445, 325));
         setMinimumSize(new java.awt.Dimension(445, 325));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -71,8 +72,9 @@ public class TelaLogin extends javax.swing.JFrame {
         jLabel2.setText("Bem Vindo(a)");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 60, 127, 35));
 
-        btn_entrar.setBackground(new java.awt.Color(102, 102, 102));
+        btn_entrar.setBackground(new java.awt.Color(255, 255, 255));
         btn_entrar.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
+        btn_entrar.setForeground(new java.awt.Color(0, 0, 0));
         btn_entrar.setText("Entrar");
         btn_entrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -87,7 +89,7 @@ public class TelaLogin extends javax.swing.JFrame {
                 campo_senhaActionPerformed(evt);
             }
         });
-        getContentPane().add(campo_senha, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 170, 239, -1));
+        getContentPane().add(campo_senha, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 170, 240, -1));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Efetue seu login:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Trebuchet MS", 0, 12))); // NOI18N
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 350, 120));

@@ -20,9 +20,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
     public TelaPrincipal() {
         //setContentPane(new FundoPrincipal());
        initComponents(); // inicializa os botões e layout
-       setExtendedState(MAXIMIZED_BOTH);
        setResizable(false);
        setLocationRelativeTo(null);
+       setExtendedState(MAXIMIZED_BOTH);
         setTitle("Verdurão UFCat");
     }
     /**
@@ -45,8 +45,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
         setMaximumSize(null);
         setMinimumSize(null);
 
+        painelPrincipal.setBackground(new java.awt.Color(0, 51, 0));
+        painelPrincipal.setForeground(new java.awt.Color(0, 51, 0));
+        painelPrincipal.setMaximumSize(new java.awt.Dimension(1920, 1080));
+        painelPrincipal.setMinimumSize(new java.awt.Dimension(850, 600));
+        painelPrincipal.setPreferredSize(new java.awt.Dimension(1920, 1080));
+
         btn_cadastro.setBackground(new java.awt.Color(255, 255, 255));
-        btn_cadastro.setFont(new java.awt.Font("Trebuchet MS", 0, 24)); // NOI18N
+        btn_cadastro.setFont(new java.awt.Font("Trebuchet MS", 0, 48)); // NOI18N
         btn_cadastro.setForeground(new java.awt.Color(0, 0, 0));
         btn_cadastro.setText("Cadastro de Produtos");
         btn_cadastro.addActionListener(new java.awt.event.ActionListener() {
@@ -56,7 +62,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
 
         btn_caixa.setBackground(new java.awt.Color(255, 255, 255));
-        btn_caixa.setFont(new java.awt.Font("Trebuchet MS", 0, 24)); // NOI18N
+        btn_caixa.setFont(new java.awt.Font("Trebuchet MS", 0, 48)); // NOI18N
         btn_caixa.setForeground(new java.awt.Color(0, 0, 0));
         btn_caixa.setText("Caixa");
         btn_caixa.addActionListener(new java.awt.event.ActionListener() {
@@ -66,7 +72,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
 
         btn_estoque.setBackground(new java.awt.Color(255, 255, 255));
-        btn_estoque.setFont(new java.awt.Font("Trebuchet MS", 0, 24)); // NOI18N
+        btn_estoque.setFont(new java.awt.Font("Trebuchet MS", 0, 48)); // NOI18N
         btn_estoque.setForeground(new java.awt.Color(0, 0, 0));
         btn_estoque.setText("Estoque/Relatório");
         btn_estoque.addActionListener(new java.awt.event.ActionListener() {
@@ -76,7 +82,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
 
         btn_sair.setBackground(new java.awt.Color(153, 0, 0));
-        btn_sair.setFont(new java.awt.Font("Trebuchet MS", 0, 24)); // NOI18N
+        btn_sair.setFont(new java.awt.Font("Trebuchet MS", 0, 48)); // NOI18N
         btn_sair.setForeground(new java.awt.Color(255, 255, 255));
         btn_sair.setText("Sair");
         btn_sair.addActionListener(new java.awt.event.ActionListener() {
@@ -90,42 +96,36 @@ public class TelaPrincipal extends javax.swing.JFrame {
         painelPrincipalLayout.setHorizontalGroup(
             painelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelPrincipalLayout.createSequentialGroup()
-                .addGroup(painelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(painelPrincipalLayout.createSequentialGroup()
-                        .addGap(246, 246, 246)
-                        .addGroup(painelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(painelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(btn_caixa, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btn_cadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(painelPrincipalLayout.createSequentialGroup()
-                                .addGap(1, 1, 1)
-                                .addComponent(btn_estoque, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(painelPrincipalLayout.createSequentialGroup()
-                        .addGap(326, 326, 326)
-                        .addComponent(btn_sair, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(253, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(painelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(btn_cadastro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_estoque, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_caixa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(painelPrincipalLayout.createSequentialGroup()
+                .addGap(881, 881, 881)
+                .addComponent(btn_sair, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(893, Short.MAX_VALUE))
         );
         painelPrincipalLayout.setVerticalGroup(
             painelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelPrincipalLayout.createSequentialGroup()
-                .addContainerGap(156, Short.MAX_VALUE)
+                .addContainerGap(430, Short.MAX_VALUE)
                 .addComponent(btn_cadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(49, 49, 49)
                 .addComponent(btn_caixa, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(54, 54, 54)
                 .addComponent(btn_estoque, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(65, 65, 65)
-                .addComponent(btn_sair, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(54, 54, 54))
+                .addGap(105, 105, 105)
+                .addComponent(btn_sair)
+                .addGap(134, 134, 134))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(painelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 93, Short.MAX_VALUE))
+            .addComponent(painelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
