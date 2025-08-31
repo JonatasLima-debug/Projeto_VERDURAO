@@ -54,7 +54,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         painelPrincipal.setPreferredSize(new java.awt.Dimension(1920, 1080));
 
         btn_cadastro.setBackground(new java.awt.Color(255, 255, 255));
-        btn_cadastro.setFont(new java.awt.Font("Trebuchet MS", 0, 48)); // NOI18N
+        btn_cadastro.setFont(new java.awt.Font("Tw Cen MT", 0, 50)); // NOI18N
         btn_cadastro.setForeground(new java.awt.Color(0, 0, 0));
         btn_cadastro.setText("Cadastro de Produtos");
         btn_cadastro.addActionListener(new java.awt.event.ActionListener() {
@@ -64,7 +64,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
 
         btn_caixa.setBackground(new java.awt.Color(255, 255, 255));
-        btn_caixa.setFont(new java.awt.Font("Trebuchet MS", 0, 48)); // NOI18N
+        btn_caixa.setFont(new java.awt.Font("Tw Cen MT", 0, 50)); // NOI18N
         btn_caixa.setForeground(new java.awt.Color(0, 0, 0));
         btn_caixa.setText("Caixa");
         btn_caixa.addActionListener(new java.awt.event.ActionListener() {
@@ -74,7 +74,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
 
         btn_estoque.setBackground(new java.awt.Color(255, 255, 255));
-        btn_estoque.setFont(new java.awt.Font("Trebuchet MS", 0, 48)); // NOI18N
+        btn_estoque.setFont(new java.awt.Font("Tw Cen MT", 0, 50)); // NOI18N
         btn_estoque.setForeground(new java.awt.Color(0, 0, 0));
         btn_estoque.setText("Estoque/Relatório");
         btn_estoque.addActionListener(new java.awt.event.ActionListener() {
@@ -84,7 +84,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
 
         btn_sair.setBackground(new java.awt.Color(153, 0, 0));
-        btn_sair.setFont(new java.awt.Font("Trebuchet MS", 0, 48)); // NOI18N
+        btn_sair.setFont(new java.awt.Font("Tw Cen MT", 0, 50)); // NOI18N
         btn_sair.setForeground(new java.awt.Color(255, 255, 255));
         btn_sair.setText("Sair");
         btn_sair.addActionListener(new java.awt.event.ActionListener() {
@@ -140,7 +140,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         painelPrincipalLayout.setVerticalGroup(
             painelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelPrincipalLayout.createSequentialGroup()
-                .addContainerGap(161, Short.MAX_VALUE)
+                .addContainerGap(167, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(100, 100, 100)
                 .addComponent(btn_cadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)

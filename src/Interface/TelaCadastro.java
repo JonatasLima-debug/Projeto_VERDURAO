@@ -132,7 +132,7 @@ public class TelaCadastro extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         getContentPane().add(label_cadastroProdutos, new org.netbeans.lib.awtextra.AbsoluteConstraints(375, 14, -1, -1));
 
-        tabela_produtos.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
+        tabela_produtos.setFont(new java.awt.Font("Tw Cen MT", 0, 14)); // NOI18N
         tabela_produtos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
@@ -169,7 +169,7 @@ public class TelaCadastro extends javax.swing.JFrame {
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 434, 410));
 
         btn_editar.setBackground(new java.awt.Color(255, 255, 255));
-        btn_editar.setFont(new java.awt.Font("Trebuchet MS", 0, 24)); // NOI18N
+        btn_editar.setFont(new java.awt.Font("Tw Cen MT", 0, 26)); // NOI18N
         btn_editar.setForeground(new java.awt.Color(0, 0, 0));
         btn_editar.setText("Editar");
         btn_editar.addActionListener(new java.awt.event.ActionListener() {
@@ -180,7 +180,7 @@ public class TelaCadastro extends javax.swing.JFrame {
         getContentPane().add(btn_editar, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 420, -1, -1));
 
         btn_excluir.setBackground(new java.awt.Color(255, 255, 255));
-        btn_excluir.setFont(new java.awt.Font("Trebuchet MS", 0, 24)); // NOI18N
+        btn_excluir.setFont(new java.awt.Font("Tw Cen MT", 0, 26)); // NOI18N
         btn_excluir.setForeground(new java.awt.Color(0, 0, 0));
         btn_excluir.setText("Excluir");
         btn_excluir.addActionListener(new java.awt.event.ActionListener() {
@@ -191,7 +191,7 @@ public class TelaCadastro extends javax.swing.JFrame {
         getContentPane().add(btn_excluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 420, -1, -1));
 
         btn_novo.setBackground(new java.awt.Color(255, 255, 255));
-        btn_novo.setFont(new java.awt.Font("Trebuchet MS", 0, 24)); // NOI18N
+        btn_novo.setFont(new java.awt.Font("Tw Cen MT", 0, 26)); // NOI18N
         btn_novo.setForeground(new java.awt.Color(0, 0, 0));
         btn_novo.setText("Novo");
         btn_novo.addActionListener(new java.awt.event.ActionListener() {
@@ -221,7 +221,7 @@ public class TelaCadastro extends javax.swing.JFrame {
         label_quantidade.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         label_quantidade.setText("Quantidade (em kg) :");
 
-        btn_salvar.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
+        btn_salvar.setFont(new java.awt.Font("Tw Cen MT", 0, 20)); // NOI18N
         btn_salvar.setText("Salvar");
         btn_salvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -229,7 +229,7 @@ public class TelaCadastro extends javax.swing.JFrame {
             }
         });
 
-        btn_cancelar.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
+        btn_cancelar.setFont(new java.awt.Font("Tw Cen MT", 0, 20)); // NOI18N
         btn_cancelar.setText("Cancelar");
         btn_cancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -304,7 +304,7 @@ public class TelaCadastro extends javax.swing.JFrame {
         getContentPane().add(panel_cadastrarProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 110, 450, -1));
 
         btn_voltar.setBackground(new java.awt.Color(153, 255, 153));
-        btn_voltar.setFont(new java.awt.Font("Trebuchet MS", 0, 24)); // NOI18N
+        btn_voltar.setFont(new java.awt.Font("Tw Cen MT", 0, 26)); // NOI18N
         btn_voltar.setForeground(new java.awt.Color(0, 0, 0));
         btn_voltar.setText("Voltar");
         btn_voltar.addActionListener(new java.awt.event.ActionListener() {
@@ -407,18 +407,23 @@ public class TelaCadastro extends javax.swing.JFrame {
                 Campo_preco.setText("");
                 return;
             }
-            
-            if(modoCadastro.equals("Novo")){//testa se o usuário está cadastrando um novo produto no BD
-               ps.CadastrarProduto(nome, preco, tipo, quantidade);
-               TabelaCadastroBD();//atualiza tabela
-               JOptionPane.showMessageDialog(rootPane, "Produto salvo com sucesso!", "Cadastro", 1);  
+            if(!nome.isBlank()){//apenas se o campo do nome do produto estiver preenchido, ele será cadastrado ou editado
+                if(modoCadastro.equals("Novo")){//testa se o usuário está cadastrando um novo produto no BD
+                    ps.CadastrarProduto(nome, preco, tipo, quantidade);
+                    TabelaCadastroBD();//atualiza tabela
+                    JOptionPane.showMessageDialog(rootPane, "Produto salvo com sucesso!", "Cadastro", 1);  
+                 }
+                 else if(modoCadastro.equals("Editar")){//testa se o usuário está editando um produto já cadastrado no BD
+                     int id = ps.obterIdPorNome(nome);
+                     ps.EditarProduto(id,nome, preco, tipo, quantidade);
+                     TabelaCadastroBD();//atualiza tabela
+                     JOptionPane.showMessageDialog(rootPane, "Produto editado com sucesso!", "Edição", 1);  
+                 }
             }
-            else if(modoCadastro.equals("Editar")){//testa se o usuário está editando um produto já cadastrado no BD
-                int id = ps.obterIdPorNome(nome);
-                ps.EditarProduto(id,nome, preco, tipo, quantidade);
-                TabelaCadastroBD();//atualiza tabela
-                JOptionPane.showMessageDialog(rootPane, "Produto editado com sucesso!", "Edição", 1);  
-            } 
+            else{
+                JOptionPane.showMessageDialog(rootPane, "Informe o nome do produto","Produto sem nome",2);
+            }
+             
         }
         catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(rootPane, "Dados inválidos. Preencha corretamente os campos.","Dados inválidos",2);

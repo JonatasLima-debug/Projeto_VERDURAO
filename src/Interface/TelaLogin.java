@@ -53,7 +53,7 @@ public class TelaLogin extends javax.swing.JFrame {
         });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        label_usuario.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
+        label_usuario.setFont(new java.awt.Font("Tw Cen MT", 0, 20)); // NOI18N
         label_usuario.setForeground(new java.awt.Color(255, 255, 255));
         label_usuario.setText("Usuário: ");
         getContentPane().add(label_usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, -1, -1));
@@ -67,12 +67,12 @@ public class TelaLogin extends javax.swing.JFrame {
         });
         getContentPane().add(campo_usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 240, -1));
 
-        jLabel1.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tw Cen MT", 0, 20)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Senha:");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, -1, -1));
 
-        jLabel2.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tw Cen MT", 0, 20)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Bem Vindo(a)");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 90, 127, 35));
@@ -101,7 +101,7 @@ public class TelaLogin extends javax.swing.JFrame {
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 350, 120));
 
         label_titulo.setBackground(new java.awt.Color(0, 51, 0));
-        label_titulo.setFont(new java.awt.Font("Trebuchet MS", 0, 24)); // NOI18N
+        label_titulo.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
         label_titulo.setForeground(new java.awt.Color(0, 0, 0));
         label_titulo.setText("Área de Login - Verdurão UFCat");
         getContentPane().add(label_titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, -1, -1));
