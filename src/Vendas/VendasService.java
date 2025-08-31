@@ -17,7 +17,7 @@ public class VendasService {
     // Registrar venda pelo nome do produto
     public void registrarVenda(String nomeProduto, float quantidadeCliente) {
         // Tentar vender o produto (atualiza estoque)
-        
+        /*
         boolean vendaSucesso = produtoService.vender(nomeProduto, quantidadeCliente);
 
         if (!vendaSucesso) {
@@ -25,7 +25,7 @@ public class VendasService {
             JOptionPane.showMessageDialog(null, "Falha ao registrar venda");
             return;
         }
-
+        */
         
         // Obter preço unitário e ID do produto
         float precoUnitario = produtoService.obterPrecoPorNome(nomeProduto);
