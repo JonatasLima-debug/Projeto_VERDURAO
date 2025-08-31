@@ -122,6 +122,8 @@ public class TelaCadastro extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         Campo_preco = new javax.swing.JTextField();
         btn_voltar = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        label_titulo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(950, 572));
@@ -312,6 +314,32 @@ public class TelaCadastro extends javax.swing.JFrame {
         });
         getContentPane().add(btn_voltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 610, -1, -1));
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        label_titulo.setFont(new java.awt.Font("Times New Roman", 0, 48)); // NOI18N
+        label_titulo.setForeground(new java.awt.Color(0, 0, 0));
+        label_titulo.setText("CADASTRO");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(label_titulo)
+                .addContainerGap(18, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(label_titulo)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 20, 300, 70));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -501,11 +529,13 @@ public class TelaCadastro extends javax.swing.JFrame {
     private javax.swing.JButton btn_salvar;
     private javax.swing.JButton btn_voltar;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel label_cadastroProdutos;
     private javax.swing.JLabel label_nomeProduto;
     private javax.swing.JLabel label_quantidade;
     private javax.swing.JLabel label_tipo;
+    private javax.swing.JLabel label_titulo;
     private javax.swing.JPanel panel_cadastrarProduto;
     private javax.swing.JTable tabela_produtos;
     // End of variables declaration//GEN-END:variables

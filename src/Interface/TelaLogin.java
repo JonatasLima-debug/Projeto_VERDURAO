@@ -39,11 +39,13 @@ public class TelaLogin extends javax.swing.JFrame {
         btn_entrar = new javax.swing.JButton();
         campo_senha = new javax.swing.JPasswordField();
         jPanel2 = new javax.swing.JPanel();
+        label_titulo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 51, 0));
-        setMaximumSize(new java.awt.Dimension(445, 325));
-        setMinimumSize(new java.awt.Dimension(445, 325));
+        setMaximumSize(new java.awt.Dimension(445, 334));
+        setMinimumSize(new java.awt.Dimension(445, 334));
+        setPreferredSize(new java.awt.Dimension(396, 350));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -54,7 +56,7 @@ public class TelaLogin extends javax.swing.JFrame {
         label_usuario.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
         label_usuario.setForeground(new java.awt.Color(255, 255, 255));
         label_usuario.setText("Usuário: ");
-        getContentPane().add(label_usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 130, -1, -1));
+        getContentPane().add(label_usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, -1, -1));
 
         campo_usuario.setBackground(new java.awt.Color(255, 255, 255));
         campo_usuario.setForeground(new java.awt.Color(0, 0, 0));
@@ -63,17 +65,17 @@ public class TelaLogin extends javax.swing.JFrame {
                 campo_usuarioActionPerformed(evt);
             }
         });
-        getContentPane().add(campo_usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 130, 240, -1));
+        getContentPane().add(campo_usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 240, -1));
 
         jLabel1.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Senha:");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 170, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Bem Vindo(a)");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 60, 127, 35));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 90, 127, 35));
 
         btn_entrar.setBackground(new java.awt.Color(255, 255, 255));
         btn_entrar.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
@@ -84,7 +86,7 @@ public class TelaLogin extends javax.swing.JFrame {
                 btn_entrarActionPerformed(evt);
             }
         });
-        getContentPane().add(btn_entrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 240, -1, -1));
+        getContentPane().add(btn_entrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 270, -1, -1));
 
         campo_senha.setBackground(new java.awt.Color(255, 255, 255));
         campo_senha.addActionListener(new java.awt.event.ActionListener() {
@@ -92,10 +94,17 @@ public class TelaLogin extends javax.swing.JFrame {
                 campo_senhaActionPerformed(evt);
             }
         });
-        getContentPane().add(campo_senha, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 170, 240, -1));
+        getContentPane().add(campo_senha, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 200, 240, -1));
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Efetue seu login:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Trebuchet MS", 0, 12))); // NOI18N
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 350, 120));
+        jPanel2.setBackground(new java.awt.Color(102, 102, 102));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Efetue seu login:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Trebuchet MS", 0, 12), new java.awt.Color(255, 255, 255))); // NOI18N
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 350, 120));
+
+        label_titulo.setBackground(new java.awt.Color(0, 51, 0));
+        label_titulo.setFont(new java.awt.Font("Trebuchet MS", 0, 24)); // NOI18N
+        label_titulo.setForeground(new java.awt.Color(0, 0, 0));
+        label_titulo.setText("Área de Login - Verdurão UFCat");
+        getContentPane().add(label_titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -171,6 +180,7 @@ public class TelaLogin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel label_titulo;
     private javax.swing.JLabel label_usuario;
     // End of variables declaration//GEN-END:variables
 }
