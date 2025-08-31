@@ -82,24 +82,6 @@ public class TelaEstoque extends JFrame {
         tabelaEstoque.setModel(model);
     }
 
-    private void realizarVenda() {
-        String nome = campoNomeVenda.getText().trim();
-        long quantidade;
-        try {
-            quantidade = Long.parseLong(campoQuantidadeVenda.getText().trim());
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "Quantidade inválida!");
-            return;
-        }
-
-        // Chamar o método certo!
-        vendasService.registrarVenda(nome, quantidade);
-
-        // Atualizar a tabela de estoque
-        atualizarEstoque();
-    }
-
-
     // -----------------------------
     private JPanel painelVendasDoDia() {
         JPanel panel = new JPanel(new BorderLayout());
