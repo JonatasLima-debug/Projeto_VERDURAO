@@ -179,7 +179,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void btn_estoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_estoqueActionPerformed
         //criar uma instância do JFrame do estoque do verdurão e mostrá-lo na tela
-        InterfaceMain telaEstoque = new InterfaceMain();
+        TelaEstoque telaEstoque = new TelaEstoque();
         telaEstoque.setVisible(true);
     }//GEN-LAST:event_btn_estoqueActionPerformed
 

@@ -13,7 +13,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.util.List;
 
-public class InterfaceMain extends JFrame {
+public class TelaEstoque extends JFrame {
     private ProdutoService produtoService;
     private VendasService vendasService;
 
@@ -22,7 +22,7 @@ public class InterfaceMain extends JFrame {
     private JTextField campoNomeVenda;
     private JTextField campoQuantidadeVenda;
 
-    public InterfaceMain() {
+    public TelaEstoque() {
         // Inicializar conexão e services
         BancoDeDados bd = new BancoDeDados();
         bd.conectar();
@@ -81,26 +81,7 @@ public class InterfaceMain extends JFrame {
 
         tabelaEstoque.setModel(model);
     }
-/*
-    // -----------------------------
-    private JPanel painelVendas() {
-        JPanel panel = new JPanel(new GridLayout(5, 2, 10, 10));
 
-        panel.add(new JLabel("Nome do Produto:"));
-        campoNomeVenda = new JTextField();
-        panel.add(campoNomeVenda);
-
-        panel.add(new JLabel("Quantidade:"));
-        campoQuantidadeVenda = new JTextField();
-        panel.add(campoQuantidadeVenda);
-
-        JButton btnVender = new JButton("Vender");
-        btnVender.addActionListener(e -> realizarVenda());
-        panel.add(btnVender);
-
-        return panel;
-    }
-*/
     private void realizarVenda() {
         String nome = campoNomeVenda.getText().trim();
         long quantidade;
@@ -114,9 +95,8 @@ public class InterfaceMain extends JFrame {
         // Chamar o método certo!
         vendasService.registrarVenda(nome, quantidade);
 
-        // Atualizar a tabela de estoque e vendas do dia
+        // Atualizar a tabela de estoque
         atualizarEstoque();
-        //atualizarVendasDoDia();
     }
 
 
@@ -160,7 +140,7 @@ public class InterfaceMain extends JFrame {
     // -----------------------------
    public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
-            InterfaceMain janela = new InterfaceMain();
+            TelaEstoque janela = new TelaEstoque();
             janela.setVisible(true);
         });
     }
