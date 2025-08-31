@@ -15,10 +15,8 @@ import Vendas.VendasService;
 
 import java.util.List;
 import javax.swing.DefaultListModel;
-import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import java.text.DecimalFormat;
 
 public class TelaCaixa extends javax.swing.JFrame {
     DefaultTableModel listaCompras;
@@ -34,8 +32,6 @@ public class TelaCaixa extends javax.swing.JFrame {
      * Creates new form Caixa
      */
     public TelaCaixa() {
-        //setContentPane(new FundoCaixa());
-
         initComponents();
         list_buscarProduto.setVisible(false);
         completaJList();

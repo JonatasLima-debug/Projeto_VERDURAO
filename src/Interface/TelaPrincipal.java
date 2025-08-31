@@ -8,8 +8,6 @@ package Interface;
  *
  * @author Lorena
  */
-import java.awt.Dimension;
-import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 
 public class TelaPrincipal extends javax.swing.JFrame {
@@ -18,7 +16,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
      * Creates new form TelaPrincipal
      */
     public TelaPrincipal() {
-        //setContentPane(new FundoPrincipal());
        initComponents(); // inicializa os botões e layout
        setResizable(false);
        setLocationRelativeTo(null);

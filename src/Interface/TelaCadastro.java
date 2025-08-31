@@ -10,14 +10,12 @@ package Interface;
  */
 import Produtos.*;
 import BD_Verdurao.*;
-import java.awt.event.ActionEvent;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class TelaCadastro extends javax.swing.JFrame {
     String modoCadastro;
-
     BancoDeDados bd;
     ProdutoDAO pd;
     ProdutoService ps;
@@ -25,9 +23,6 @@ public class TelaCadastro extends javax.swing.JFrame {
      * Creates new form TelaCadastro
      */
     public TelaCadastro() {
-
-        //setContentPane(new FundoCadastro());
-
         initComponents();
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
