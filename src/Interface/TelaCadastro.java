@@ -42,18 +42,18 @@ public class TelaCadastro extends javax.swing.JFrame {
     }
     
     public void TabelaCadastroBD(){
-        DefaultTableModel tabela = new DefaultTableModel(new Object[] {"ID", "Nome do Produto","Tipo","Preço por kg","Quantidade" },0);
-        List<Produtos> todosProdutos = ps.dao.buscarTodos();
+        DefaultTableModel tabela = new DefaultTableModel(new Object[] {"ID", "Nome do Produto","Tipo","Preço por kg","Quantidade" },0);//criando um modelo da tabela
+        List<Produtos> todosProdutos = ps.dao.buscarTodos();//carregando todos os produtos cadastrados no BD para uma lista
         
         try{
           for(Produtos p : todosProdutos ){
-            tabela.addRow(new Object[]{p.getId(),p.getNome(),p.getTipo(),p.getPreco(),p.getQuantidade()});
+            tabela.addRow(new Object[]{p.getId(),p.getNome(),p.getTipo(),p.getPreco(),p.getQuantidade()});//adicionando os produtos do BD na tabela por meio da lista
           }  
         }
         catch(Exception erro){
             System.out.println(erro);
         }
-        tabela_produtos.setModel(tabela);
+        tabela_produtos.setModel(tabela);//associando a tabela ao JTable "tabela_produtos"
     }
     
     public void manipularInterfaceCadastro(){
@@ -317,9 +317,11 @@ public class TelaCadastro extends javax.swing.JFrame {
 
     private void btn_novoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_novoActionPerformed
         // TODO add your handling code here:
+        //deixando todos os campos limpos...
         Campo_quantidade.setText("");
         Campo_nomeProduto.setText("");
         Campo_preco.setText("");
+        //...e habilitados para a inserção de dados
         modoCadastro = "Novo";
         manipularInterfaceCadastro();
     }//GEN-LAST:event_btn_novoActionPerformed
@@ -332,11 +334,14 @@ public class TelaCadastro extends javax.swing.JFrame {
 
     private void btn_excluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_excluirActionPerformed
         // TODO add your handling code here:
-        int click = tabela_produtos.getSelectedRow();
-        if(click!=-1){
+        int click = tabela_produtos.getSelectedRow();//obtendo a linha selecionada por meio do click do mouse
+        
+        if(click!=-1){//testa se alguma linha da tabela_produtos foi selecionada
+            //obtendo dados do produto cuja linha foi selecionada
             String id = tabela_produtos.getValueAt(click, 0).toString();
             String nome = (String) tabela_produtos.getValueAt(click, 1);
             
+            //verificando se o usuário deseja excluir o produto
             int excluir = JOptionPane.showConfirmDialog(rootPane,"Deseja realmente excluir o produto \"" + nome + "\"?","Confirmar exclusão", JOptionPane.YES_NO_OPTION);
             if(excluir == 0){
                 try {
@@ -352,35 +357,38 @@ public class TelaCadastro extends javax.swing.JFrame {
                 modoCadastro="Navegar";
                 manipularInterfaceCadastro();
             }
-            TabelaCadastroBD();
+            //TabelaCadastroBD();
         }
     }//GEN-LAST:event_btn_excluirActionPerformed
 
     private void btn_salvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_salvarActionPerformed
-        try{
+        try{//tratamento de exceção para dados inválidos ou campos deixados em branco
             String nome = Campo_nomeProduto.getText();
             float quantidade = Float.parseFloat(Campo_quantidade.getText());
-            if(quantidade <= 0){
+            
+            if(quantidade <= 0){//validação da quantidade
                 JOptionPane.showMessageDialog(rootPane, "A quantidade deve ser maior do que 0.","Quantidade inválida",2);
                 Campo_quantidade.setText("");
                 return;
             }
             String tipo = (String) ComboBox_tipo.getSelectedItem();
             float preco = Float.parseFloat(Campo_preco.getText());
-            if(preco <= 0){
+            
+            if(preco <= 0){//validação do preço
                 JOptionPane.showMessageDialog(rootPane, "O preço deve ser maior do que 0.","Preço inválido",2);
                 Campo_preco.setText("");
                 return;
             }
-            if(modoCadastro.equals("Novo")){
+            
+            if(modoCadastro.equals("Novo")){//testa se o usuário está cadastrando um novo produto no BD
                ps.CadastrarProduto(nome, preco, tipo, quantidade);
-               TabelaCadastroBD();
+               TabelaCadastroBD();//atualiza tabela
                JOptionPane.showMessageDialog(rootPane, "Produto salvo com sucesso!", "Cadastro", 1);  
             }
-            else if(modoCadastro.equals("Editar")){
+            else if(modoCadastro.equals("Editar")){//testa se o usuário está editando um produto já cadastrado no BD
                 int id = ps.obterIdPorNome(nome);
                 ps.EditarProduto(id,nome, preco, tipo, quantidade);
-                TabelaCadastroBD();
+                TabelaCadastroBD();//atualiza tabela
                 JOptionPane.showMessageDialog(rootPane, "Produto editado com sucesso!", "Edição", 1);  
             } 
         }
@@ -390,7 +398,7 @@ public class TelaCadastro extends javax.swing.JFrame {
         catch (NullPointerException e) {
             JOptionPane.showMessageDialog(rootPane, "Erro: campos não preenchidos corretamente.", "Campos vazios", 2);
          }
-        
+        //limpando os campos...
         Campo_quantidade.setText("");
         Campo_nomeProduto.setText("");
         Campo_preco.setText("");
@@ -400,6 +408,7 @@ public class TelaCadastro extends javax.swing.JFrame {
 
     private void btn_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelarActionPerformed
         // TODO add your handling code here:
+        //conferindo se o usuário deseja cancelar o cadastro ou a edição de um produto 
         int op = JOptionPane.showConfirmDialog(rootPane, "Descartar alterações?","Aviso",JOptionPane.YES_NO_OPTION, 3);
         if(op==0){
             Campo_quantidade.setText("");
@@ -424,19 +433,22 @@ public class TelaCadastro extends javax.swing.JFrame {
 
     private void tabela_produtosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabela_produtosMouseClicked
         // TODO add your handling code here:
-        int click = tabela_produtos.getSelectedRow();
-        if(click!=-1){
-            btn_novo.setEnabled(false);
+        int click = tabela_produtos.getSelectedRow();//obtém a linha selecionada
+        if(click!=-1){//testa se realmente alguma linha foi selecionada com o mouse
+            btn_novo.setEnabled(false);//botão novo é desabilitado, pois um elemento da tabela foi selecionado para edição ou exclusão
+            
+            //obtendo os dados do produto cuja linha foi selecionada
             String nome = (String) tabela_produtos.getValueAt(click, 1);
             String tipo = (String) tabela_produtos.getValueAt(click, 2);
             String preco = tabela_produtos.getValueAt(click, 3).toString();
             String quantidade = tabela_produtos.getValueAt(click, 4).toString();
             
+            //escrevendo nos campos os dados acima para que possam ser editados
             Campo_nomeProduto.setText(nome);
             Campo_preco.setText(preco);
             ComboBox_tipo.setSelectedItem(tipo);
             Campo_quantidade.setText(quantidade);
-            
+            //liberando os botões de edição e exclusão
             btn_editar.setEnabled(true);
             btn_excluir.setEnabled(true);
         }

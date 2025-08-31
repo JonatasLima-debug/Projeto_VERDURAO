@@ -137,21 +137,25 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_cadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cadastroActionPerformed
+        //criar uma instância do JFrame de cadastro de produtos e mostrá-lo na tela
         TelaCadastro tc = new TelaCadastro();
         tc.setVisible(true);
     }//GEN-LAST:event_btn_cadastroActionPerformed
 
     private void btn_caixaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_caixaActionPerformed
+        //criar uma instância do JFrame do Caixa do verdurão e mostrá-lo na tela
         TelaCaixa cx = new TelaCaixa();
         cx.setVisible(true);
     }//GEN-LAST:event_btn_caixaActionPerformed
 
     private void btn_estoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_estoqueActionPerformed
+        //criar uma instância do JFrame do estoque do verdurão e mostrá-lo na tela
         InterfaceMain telaEstoque = new InterfaceMain();
         telaEstoque.setVisible(true);
     }//GEN-LAST:event_btn_estoqueActionPerformed
 
     private void btn_sairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_sairActionPerformed
+        //confirmado se o usuário quer sair do programa
         int opcao = JOptionPane.showConfirmDialog(rootPane, "Deseja fechar o programa?", "Aviso",JOptionPane.YES_NO_OPTION , 3);
         if(opcao == 0)
             System.exit(0);

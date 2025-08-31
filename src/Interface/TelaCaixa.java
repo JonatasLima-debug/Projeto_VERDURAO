@@ -50,18 +50,18 @@ public class TelaCaixa extends javax.swing.JFrame {
         vd = new VendasDAO(bdv);
         vs = new VendasService(ps,vd);
         
-        listaCompras = (DefaultTableModel) tabela_compras.getModel();
-        listaCompras.setRowCount(0);
+        listaCompras = (DefaultTableModel) tabela_compras.getModel();//criando uma lista do formato da tabela_compras
+        listaCompras.setRowCount(0);//garantindo que a listaCompras está vazia
         
-        sugestaoNome = new DefaultListModel<>();
-        list_buscarProduto.setModel(sugestaoNome);
+        sugestaoNome = new DefaultListModel<>();//instanciando uma lista para sugestões de nomes dos produtos do BD
+        list_buscarProduto.setModel(sugestaoNome);//a JList estará no mesmo formato da lista "sugestaoNome"
         
-        label_total.setText(" TOTAL: R$"+ String.format("%.2f", contagemPreco));
-        
+        label_total.setText(" TOTAL: R$"+ String.format("%.2f", contagemPreco));//********Precisa disso, ou chamamos o método atualizarTotal?
     }
     
     public void TabelaComprasBD(int id, String nome,float preco, String tipo, float quantidade){
          try{
+             //adicionando os produtos passados no caixa na tabela de compras
             listaCompras.addRow(new Object[]{id,nome,tipo,preco*quantidade,quantidade});
           }
         catch(Exception erro){
@@ -71,9 +71,9 @@ public class TelaCaixa extends javax.swing.JFrame {
     
     private void atualizarTotal() {
     float total = 0;
-    for (int i = 0; i < listaCompras.getRowCount(); i++) {
-        total += (Float) listaCompras.getValueAt(i, 3);
-    }
+    //somando o valor total dos produtos adicionados na tabela do caixa
+    for (int i = 0; i < listaCompras.getRowCount(); i++)
+        total += (Float) listaCompras.getValueAt(i, 3);//somando linha por linha
     contagemPreco = total;
     label_total.setText(" TOTAL: R$" + String.format("%.2f", contagemPreco));
 }
@@ -407,10 +407,13 @@ public class TelaCaixa extends javax.swing.JFrame {
     }//GEN-LAST:event_ComboBox_tipoActionPerformed
 
     private void btn_adicionarListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_adicionarListaActionPerformed
-        
         String nome = campo_nomeProduto.getText();
         if(pd.produtoExiste(nome)){
             try {
+                 if (campo_quantidade.getText().trim().isEmpty()) {
+                    JOptionPane.showMessageDialog(this, "Digite a quantidade.");
+                    return;
+                }
                 float qtd = Float.parseFloat(campo_quantidade.getText());
                 if (qtd <= 0) {
                     JOptionPane.showMessageDialog(this, "Informe uma quantidade válida.");
@@ -423,9 +426,6 @@ public class TelaCaixa extends javax.swing.JFrame {
                    int id = pd.obterIdPorNome(nome);
                    float preco = pd.obterPrecoPorNome(nome);
                    TabelaComprasBD(id,nome.toUpperCase(), preco, tipo, qtd);
-
-                   contagemPreco += preco*qtd;
-
                    atualizarTotal();
                }
                else{
@@ -451,7 +451,7 @@ public class TelaCaixa extends javax.swing.JFrame {
         // TODO add your handling code here:
         int click = tabela_compras.getSelectedRow();
         if(click!=-1){
-           float preco = (Float) listaCompras.getValueAt(click,3);
+           float preco = Float.parseFloat(listaCompras.getValueAt(click, 3).toString());
            contagemPreco -= preco;
            listaCompras.removeRow(click);
            atualizarTotal();
@@ -479,37 +479,40 @@ public class TelaCaixa extends javax.swing.JFrame {
                 }
             }
         }
+        if (sugestaoNome.isEmpty()) {
+            list_buscarProduto.setVisible(false);
+        }
     }//GEN-LAST:event_campo_nomeProdutoActionPerformed
 
     private void venderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_venderActionPerformed
         // TODO add your handling code here:
          DefaultTableModel model = (DefaultTableModel) tabela_compras.getModel();
-    int rowCount = model.getRowCount();
+        int rowCount = model.getRowCount();
 
-    if (rowCount == 0) {
-        JOptionPane.showMessageDialog(this, "Nenhum produto na lista para vender.");
-        return;
-    }
-
-    //float totalVenda = 0;
-
-    for (int i = 0; i < rowCount; i++) {
-        String nomeProduto = (String) model.getValueAt(i, 1); // Coluna 1 = Nome
-        float quantidade = Float.parseFloat(model.getValueAt(i, 4).toString()); // Coluna 4 = Quantidade
-
-        // Atualiza o estoque
-        boolean vendido = ps.vender(nomeProduto, quantidade);
-
-        if (vendido) {
-            // Registra no banco
-            vs.registrarVenda(nomeProduto, quantidade);
-
-            // Soma ao total
-            //float preco = Float.parseFloat(model.getValueAt(i, 3).toString()); // Coluna 3 = Preço por kg
-            //totalVenda += preco * quantidade;
-        } else {
-            JOptionPane.showMessageDialog(this, "Erro ao vender produto: " + nomeProduto);
+        if (rowCount == 0) {
+            JOptionPane.showMessageDialog(this, "Nenhum produto na lista para vender.");
+            return;
         }
+
+        //float totalVenda = 0;
+
+        for (int i = 0; i < rowCount; i++) {
+            String nomeProduto = (String) model.getValueAt(i, 1); // Coluna 1 = Nome
+            float quantidade = Float.parseFloat(model.getValueAt(i, 4).toString()); // Coluna 4 = Quantidade
+
+            // Atualiza o estoque
+            boolean vendido = ps.vender(nomeProduto, quantidade);
+
+            if (vendido) {
+                // Registra no banco
+                vs.registrarVenda(nomeProduto, quantidade);
+
+                // Soma ao total
+                //float preco = Float.parseFloat(model.getValueAt(i, 3).toString()); // Coluna 3 = Preço por kg
+                //totalVenda += preco * quantidade;
+            } else {
+                JOptionPane.showMessageDialog(this, "Erro ao vender produto: " + nomeProduto);
+            }
     }
 
     // Atualiza label do total

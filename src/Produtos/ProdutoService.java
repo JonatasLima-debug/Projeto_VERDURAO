@@ -42,7 +42,7 @@ public class ProdutoService {
         dao.atualizarQuantidadePosVenda(nomeProduto, novoEstoque);
 
         System.out.printf("Venda realizada! Produto: %s | Total a pagar: R$ %.2f | Novo estoque: %s%n",
-                nomeProduto, (precoUnitario * quantidadeCliente) / 100.0, novoEstoque);
+                nomeProduto, (precoUnitario * quantidadeCliente), novoEstoque);
  
 
         return true;

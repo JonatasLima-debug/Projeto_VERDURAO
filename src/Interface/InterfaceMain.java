@@ -13,7 +13,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.util.List;
 
-public class InterfaceMain extends JFrame { // 🔹 aqui estava faltando extends JFrame
+public class InterfaceMain extends JFrame {
     private ProdutoService produtoService;
     private VendasService vendasService;
 
