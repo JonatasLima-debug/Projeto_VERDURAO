@@ -56,7 +56,7 @@ public class TelaCaixa extends javax.swing.JFrame {
         sugestaoNome = new DefaultListModel<>();//instanciando uma lista para sugestões de nomes dos produtos do BD
         list_buscarProduto.setModel(sugestaoNome);//a JList estará no mesmo formato da lista "sugestaoNome"
         
-        label_total.setText(" TOTAL: R$"+ String.format("%.2f", contagemPreco));//********Precisa disso, ou chamamos o método atualizarTotal?
+        atualizarTotal(); //inicializa o label total como 0
     }
     
     public void TabelaComprasBD(int id, String nome,float preco, String tipo, float quantidade){
@@ -75,6 +75,7 @@ public class TelaCaixa extends javax.swing.JFrame {
     for (int i = 0; i < listaCompras.getRowCount(); i++)
         total += (Float) listaCompras.getValueAt(i, 3);//somando linha por linha
     contagemPreco = total;
+    //atualiza o label_total com o valor da compra
     label_total.setText(" TOTAL: R$" + String.format("%.2f", contagemPreco));
 }
     
@@ -408,25 +409,25 @@ public class TelaCaixa extends javax.swing.JFrame {
 
     private void btn_adicionarListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_adicionarListaActionPerformed
         String nome = campo_nomeProduto.getText();
-        if(pd.produtoExiste(nome)){
+        if(pd.produtoExiste(nome)){ //verifica se o item está no banco de dados pelo nome
             try {
-                 if (campo_quantidade.getText().trim().isEmpty()) {
+                 if (campo_quantidade.getText().trim().isEmpty()) { //verificação se o campo está vazio
                     JOptionPane.showMessageDialog(this, "Digite a quantidade.");
                     return;
                 }
-                float qtd = Float.parseFloat(campo_quantidade.getText());
+                float qtd = Float.parseFloat(campo_quantidade.getText()); //verificação de quantidade
                 if (qtd <= 0) {
                     JOptionPane.showMessageDialog(this, "Informe uma quantidade válida.");
                     return;
                 }
                 float qtdTotal = pd.obterQuantidadePorNome(nome);
-
+                //se todos os campos forem válidos, atualiza a tabela e o label_total e adiciona um item à compra
                if(qtd<=qtdTotal){
                    String tipo = (String) ComboBox_tipo.getSelectedItem();
                    int id = pd.obterIdPorNome(nome);
                    float preco = pd.obterPrecoPorNome(nome);
-                   TabelaComprasBD(id,nome.toUpperCase(), preco, tipo, qtd);
-                   atualizarTotal();
+                   TabelaComprasBD(id,nome.toUpperCase(), preco, tipo, qtd); //atualiza a tabela de compras
+                   atualizarTotal(); //atualiza o label_total
                }
                else{
                    JOptionPane.showMessageDialog(rootPane, "Quantidade inexistente!\nQuantidade de '' "+nome+"'' em estoque: "+qtdTotal);
@@ -442,19 +443,18 @@ public class TelaCaixa extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "Esse produto não está cadastrado");
             campo_nomeProduto.setText("");
         }                                                
-        
+        //reseta os campos quantidade e nome ao adicionar ou não um item
         campo_quantidade.setText("");
         campo_nomeProduto.setText("");
     }//GEN-LAST:event_btn_adicionarListaActionPerformed
 
     private void btn_removerListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_removerListaActionPerformed
         // TODO add your handling code here:
-        int click = tabela_compras.getSelectedRow();
+        int click = tabela_compras.getSelectedRow(); //pega a linha selecionada da tabela
         if(click!=-1){
-           float preco = Float.parseFloat(listaCompras.getValueAt(click, 3).toString());
-           contagemPreco -= preco;
-           listaCompras.removeRow(click);
-           atualizarTotal();
+           float preco = Float.parseFloat(listaCompras.getValueAt(click, 3).toString()); //pega o valor do preço
+           listaCompras.removeRow(click); //remove a linha da tabela
+           atualizarTotal(); //atualiza o label_total
         }
         else{
             JOptionPane.showMessageDialog(null, "Nenhum item foi selecionado...\nPara isso, clique no produto que deseja excluir");
@@ -475,7 +475,7 @@ public class TelaCaixa extends javax.swing.JFrame {
             List<Produtos> todosProdutos = ps.dao.buscarTodos(); // pega produtos do banco
             for (Produtos p : todosProdutos) {
                 if (p.getNome().toUpperCase().startsWith(letras)) {
-                    sugestaoNome.addElement(p.getNome());
+                    sugestaoNome.addElement(p.getNome()); //adiciona a sugestão de produtos referentes à letra digitada
                 }
             }
         }
@@ -487,7 +487,7 @@ public class TelaCaixa extends javax.swing.JFrame {
     private void venderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_venderActionPerformed
         // TODO add your handling code here:
          DefaultTableModel model = (DefaultTableModel) tabela_compras.getModel();
-        int rowCount = model.getRowCount();
+        int rowCount = model.getRowCount(); //obtém o número de linhas da tabela de compras
 
         if (rowCount == 0) {
             JOptionPane.showMessageDialog(this, "Nenhum produto na lista para vender.");
@@ -501,11 +501,11 @@ public class TelaCaixa extends javax.swing.JFrame {
             float quantidade = Float.parseFloat(model.getValueAt(i, 4).toString()); // Coluna 4 = Quantidade
 
             // Atualiza o estoque
-            boolean vendido = ps.vender(nomeProduto, quantidade);
+            boolean vendido = ps.vender(nomeProduto, quantidade); //verifica se o produto pode ser vendido
 
             if (vendido) {
                 // Registra no banco
-                vs.registrarVenda(nomeProduto, quantidade);
+                vs.registrarVenda(nomeProduto, quantidade); //registra a venda caso o produto possa ser vendido
 
                 // Soma ao total
                 //float preco = Float.parseFloat(model.getValueAt(i, 3).toString()); // Coluna 3 = Preço por kg
@@ -514,13 +514,12 @@ public class TelaCaixa extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Erro ao vender produto: " + nomeProduto);
             }
     }
-
+    model.setRowCount(0); // Limpa a tabela depois da venda
+    
     // Atualiza label do total
-    contagemPreco = 0;
-    label_total.setText(" TOTAL: R$" + String.format("%.2f", contagemPreco));
+    atualizarTotal();
 
     JOptionPane.showMessageDialog(this, "Venda registrada com sucesso!");
-    model.setRowCount(0); // Limpa a tabela depois da venda
     }//GEN-LAST:event_venderActionPerformed
 
     private void tabela_comprasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabela_comprasMouseClicked
@@ -535,6 +534,11 @@ public class TelaCaixa extends javax.swing.JFrame {
 
     private void btn_calculaTrocoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_calculaTrocoActionPerformed
         // TODO add your handling code here:
+        if(contagemPreco == 0){ //verifica se a lista de compras está vazia
+            JOptionPane.showMessageDialog(this, "Não há nenhum valor a ser pago.");
+            return;
+        }
+        
         String valorPagoStr = JOptionPane.showInputDialog(this, "Digite o valor pago pelo cliente:");
         if (valorPagoStr != null) {
             try {
@@ -543,6 +547,7 @@ public class TelaCaixa extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this, "Valor insuficiente.");
                 } else {
                     float troco = valorPago - contagemPreco;
+                    //calcula o troco e o exibe
                     JOptionPane.showMessageDialog(this, "Troco: R$ " + String.format("%.2f", troco));
                 }
             } catch (NumberFormatException e) {

@@ -9,20 +9,18 @@ import javax.swing.JOptionPane;
  * @author Lorena
  */
 public class TelaLogin extends javax.swing.JFrame {
-    private final String usuario = "Joao";
-    private final String senha = "12345";
+    private final String usuario = "Verdurao";
+    private final String senha = "verdura2025";
     /**
      * Creates new form TelaLogin
      */
     public TelaLogin() {
-        //setContentPane(new FundoLogin());
 
         initComponents();
-        //setState(TelaLogin.ICONIFIED);
+        getRootPane().setDefaultButton(btn_entrar);
         setLocationRelativeTo(null);
         setTitle("Verdurão UFCat - Área de Login");
         setResizable(false);
-        getRootPane().setDefaultButton(btn_entrar);
     }
 
     /**
@@ -46,6 +44,11 @@ public class TelaLogin extends javax.swing.JFrame {
         setBackground(new java.awt.Color(0, 51, 0));
         setMaximumSize(new java.awt.Dimension(445, 325));
         setMinimumSize(new java.awt.Dimension(445, 325));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         label_usuario.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
@@ -118,8 +121,12 @@ public class TelaLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_campo_usuarioActionPerformed
 
     private void campo_senhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campo_senhaActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_campo_senhaActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
