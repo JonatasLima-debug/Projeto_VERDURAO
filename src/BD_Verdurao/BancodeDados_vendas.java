@@ -23,6 +23,11 @@ public class BancodeDados_vendas {
         }
     }
 
+    public Connection getConexao() {
+        return this.connection;
+    }
+
+
     // Inserir venda
     public void inserirVendas(Timestamp horario_venda, double valor_total, double preco_unitario, int id_produto, double quantidade_vendida) {
         String sql = "INSERT INTO vendas (horario_venda, valor_total, preco_unitario, id_produto, quantidade_vendida) VALUES (?, ?, ?, ?, ?)";

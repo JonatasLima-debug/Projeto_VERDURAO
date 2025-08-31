@@ -8,6 +8,15 @@ public class Vendas {
     private double valor_total;
     private double preco_unitario;
     private double quantidade_vendida;
+    private String nomeProduto;
+
+    public String getNomeProduto() {
+        return nomeProduto;
+    }
+
+    public void setNomeProduto(String nomeProduto) {
+        this.nomeProduto = nomeProduto;
+    }
 
     // Getters e Setters
     public int getId_produto() {

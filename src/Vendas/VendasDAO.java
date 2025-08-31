@@ -1,11 +1,17 @@
 package Vendas;
 
 import BD_Verdurao.BancodeDados_vendas;
+
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 public class VendasDAO {
     public BancodeDados_vendas bdv;
+
 
     public VendasDAO(BancodeDados_vendas bdv) {
         this.bdv = bdv;
@@ -46,4 +52,8 @@ public class VendasDAO {
             System.err.println("Erro ao mostrar vendas do dia: " + e.getMessage());
         }
     }
+
+  
+
+
 }

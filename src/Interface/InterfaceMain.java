@@ -100,7 +100,7 @@ public class InterfaceMain extends JFrame {
 
         return panel;
     }
-
+*/
     private void realizarVenda() {
         String nome = campoNomeVenda.getText().trim();
         long quantidade;
@@ -118,7 +118,7 @@ public class InterfaceMain extends JFrame {
         atualizarEstoque();
         //atualizarVendasDoDia();
     }
-*/
+
 
     // -----------------------------
     private JPanel painelVendasDoDia() {
